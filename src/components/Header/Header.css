@@ -1,0 +1,36 @@
+.header {
+  background: #073042;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 auto;
+}
+.header__block {
+  display: flex;
+}
+.header__logo {
+  margin: 18px 45px 18px 70px;
+}
+.header__menu {
+  display: flex;
+}
+.header__menu-item {
+  color: #fff;
+  text-align: right;
+  font-family: Inter;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 18px; /* 138.462% */
+}
+.header__auth {
+  display: flex;
+}
+.header__auth-item {
+  color: #fff;
+  text-align: right;
+  font-family: Inter;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 16px; /* 133.333% */
+}
