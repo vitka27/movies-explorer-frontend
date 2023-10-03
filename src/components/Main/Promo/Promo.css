@@ -1,5 +1,7 @@
 .promo {
   background: #073042;
+  display: flex;
+  flex-flow: column wrap;
 }
 .promo__title {
   width: 626px;
@@ -16,8 +18,9 @@
   letter-spacing: -1.6px;
 }
 .promo__image {
+  align-self: end;
   padding-bottom: 60px;
-  padding-left: 488px;
+  padding-right: 70px;
   max-width: 722px;
   max-height: 244px;
 }
