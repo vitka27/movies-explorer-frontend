@@ -1,0 +1,52 @@
+.footer {
+  padding: 0px 70px;
+  background: #202020;
+}
+.footer__title {
+  margin: 0;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #dadada;
+
+  color: #8b8b8b;
+  text-align: center;
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Inter;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.footer__block {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 20px;
+}
+.footer__coopirait {
+}
+.footer__coopirait-text {
+  color: #fff;
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Inter;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.footer__info {
+}
+.footer__link {
+  text-decoration: none;
+  padding-right: 20px;
+
+  color: #fff;
+  text-align: right;
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Inter;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.footer__link:last-child {
+  padding-right: 0px;
+}

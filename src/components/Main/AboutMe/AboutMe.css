@@ -22,6 +22,8 @@
   padding-top: 66px;
 }
 .about-me__info-image {
+  max-width: 270px;
+  max-height: 327px;
 }
 .aobout-me__info-block {
   max-width: 600px;
