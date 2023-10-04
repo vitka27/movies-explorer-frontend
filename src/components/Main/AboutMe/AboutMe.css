@@ -1,0 +1,74 @@
+.about-me {
+  background-color: #202020;
+  padding: 110px 70px 100px;
+}
+.about-me__title {
+  margin: 0;
+  padding-bottom: 23px;
+  border-bottom: 1px solid #dadada;
+
+  color: #fff;
+  font-family: Inter;
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.88px;
+}
+.about-me__info {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  padding-top: 66px;
+}
+.about-me__info-image {
+}
+.aobout-me__info-block {
+  max-width: 600px;
+}
+.about-me__info-name {
+  margin: 0;
+  color: #fff;
+  font-family: Inter;
+  font-size: 50px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 58px; /* 116% */
+  letter-spacing: -2px;
+}
+.about-me__info-experience {
+  margin: 0;
+  padding-top: 18px;
+  color: #fff;
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Inter;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px; /* 111.111% */
+}
+.about-me__info-text {
+  margin: 0;
+  padding-top: 26px;
+
+  color: #fff;
+  font-feature-settings: "clig" off, "liga" off;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px; /* 157.143% */
+}
+.about-me__info-link-github {
+  display: block;
+  margin: 0;
+  text-decoration: none;
+  padding-top: 99px;
+
+  color: #fff;
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
