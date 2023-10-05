@@ -1,0 +1,27 @@
+.preloader {
+  padding-top: 60px;
+  background-color: #202020;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.preloader__title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 6px;
+  background: #2f2f2f;
+  width: 320px;
+  height: 36px;
+  border: none;
+  cursor: pointer;
+
+  color: #fff;
+  text-align: center;
+  font-family: Inter;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}

@@ -1,5 +1,5 @@
 .footer {
-  padding: 0px 70px;
+  padding: 80px 70px 20px;
   background: #202020;
 }
 .footer__title {
@@ -24,6 +24,8 @@
 .footer__coopirait {
 }
 .footer__coopirait-text {
+  margin: 0;
+
   color: #fff;
   font-feature-settings: "clig" off, "liga" off;
   font-family: Inter;
