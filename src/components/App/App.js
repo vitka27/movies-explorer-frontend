@@ -4,18 +4,20 @@ import Footer from "../Footer/Footer";
 import Movies from "../Movies/Movies";
 import Login from "../Auth/Login/Login";
 import Profile from "../Auth/Profile/Profile";
+import NotFound from "../NotFound/NotFound";
 
 
 function App() {
   return (
     <div className="wrapper">
 
-      <Header />
+      {/* <Header /> */}
       {/* <Main /> */}
       {/* <Movies /> */}
       {/* <Login /> */}
-      <Profile />
+      {/* <Profile /> */}
       {/* <Footer /> */}
+      <NotFound />
     </div>
   );
 }
