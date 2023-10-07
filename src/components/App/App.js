@@ -14,10 +14,10 @@ function App() {
       {/* <Header /> */}
       {/* <Main /> */}
       {/* <Movies /> */}
-      {/* <Login /> */}
+      <Login />
       {/* <Profile /> */}
       {/* <Footer /> */}
-      <NotFound />
+      {/* <NotFound /> */}
     </div>
   );
 }
