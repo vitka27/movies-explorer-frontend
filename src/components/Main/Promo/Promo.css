@@ -2,11 +2,12 @@
   background: #073042;
   display: flex;
   flex-flow: column wrap;
+  padding: 0px 70px;
+  /* box-sizing: border-box; */
 }
 .promo__title {
-  width: 626px;
+  max-width: 626px;
   margin: 0;
-  padding-left: 70px;
   padding-top: 50px;
   padding-bottom: 102px;
   color: #fff;
@@ -20,7 +21,25 @@
 .promo__image {
   align-self: end;
   padding-bottom: 60px;
-  padding-right: 70px;
   max-width: 722px;
   max-height: 244px;
+  min-width: 680px;
+  min-height: 230px;
+  width: 100%;
+}
+
+@media screen and (max-width: 768px) {
+  .promo {
+    display: flex;
+    align-items: center;
+    align-content: center;
+    overflow: hidden;
+  }
+  .promo__title {
+    padding: 300px 0px 0px 0px;
+    text-align: center;
+  }
+  .promo__image {
+    padding: 140px 0px 70px 0px;
+  }
 }

@@ -3,20 +3,23 @@ import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
 import Movies from "../Movies/Movies";
 import Login from "../Auth/Login/Login";
+import Register from "../Auth/Register/Register";
 import Profile from "../Auth/Profile/Profile";
 import NotFound from "../NotFound/NotFound";
 
+const isAuth = false;
 
 function App() {
   return (
     <div className="wrapper">
 
-      {/* <Header /> */}
+      <Header isAuth={isAuth} />
       {/* <Main /> */}
-      {/* <Movies /> */}
-      <Login />
+      <Movies />
+      {/* <Login /> */}
+      {/* <Register /> */}
       {/* <Profile /> */}
-      {/* <Footer /> */}
+      <Footer />
       {/* <NotFound /> */}
     </div>
   );

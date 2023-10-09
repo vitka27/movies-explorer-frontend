@@ -1,20 +1,26 @@
 import React from "react";
 import logo from "../../image/logo.svg";
+import Navigation from "../Navigation/Navigation";
+import BurgerMenu from "../BurgerMenu/BurgerMenu";
+import { useState } from "react";
 
-export default function Header() {
+export default function Header({ isAuth }) {
+  const [isOpenBurgerMenu, setIsOpenBurgerMenu] = useState(false);
+
   return (
     <header className="header">
-      <div className="header__block">
+      <a href="/" className="header__link">
         <img src={logo} alt="" className="header__logo" />
-        <h1 className="header__menu">
-          <h1 className="header__menu-item">Фильмы</h1>
-          <h1 className="header__menu-item">Сохранённые фильмы</h1>
-        </h1>
+      </a>
+      <div
+        className={`header__block
+        ${!isAuth ? "header__block_justify_end" : ""}
+        ${isOpenBurgerMenu ? "header__block_active" : ""}
+        `}
+      >
+        <Navigation isAuth={isAuth} />
       </div>
-      <div className="header__auth">
-        <h1 className="header__auth-item">Регистрация</h1>
-        <h1 className="header__auth-item">Войти</h1>
-      </div>
+      {isAuth ? <BurgerMenu IsOpenBurger={setIsOpenBurgerMenu}/> : ""}
     </header>
   );
 }
