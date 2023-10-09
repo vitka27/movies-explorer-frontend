@@ -35,7 +35,7 @@
 .search-form__form::before {
   content: "";
   display: block;
-  background-image: url("../../../image/search.svg");
+  background-image: url("../../../images/search.svg");
   background-repeat: no-repeat;
   background-position: center;
   width: 34px;

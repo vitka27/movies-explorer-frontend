@@ -1,4 +1,4 @@
-import { Route, Routes, Link } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Footer from "../Footer/Footer";
@@ -8,20 +8,23 @@ import Register from "../Auth/Register/Register";
 import Profile from "../Auth/Profile/Profile";
 import NotFound from "../NotFound/NotFound";
 
-const isAuth = false;
-
 function App() {
+  const isAuth = false;
+
   return (
     <div className="wrapper">
-
-      <Header isAuth={isAuth} />
-      {/* <Main /> */}
-      <Movies />
-      {/* <Login /> */}
-      {/* <Register /> */}
-      {/* <Profile /> */}
-      <Footer />
-      {/* <NotFound /> */}
+      {["/", "/profile", "/movies"].includes(useLocation().pathname) && (
+        <Header isAuth={isAuth} />
+      )}
+      <Routes>
+        <Route path="/" element={<Main />} />
+        <Route path="/movies" element={<Movies />} />
+        <Route path="/signin" element={<Login />} />
+        <Route path="/signup" element={<Register />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+      {["/", "/profile", "/movies"].includes(useLocation().pathname) && <Footer />}{" "}
     </div>
   );
 }

@@ -13,7 +13,7 @@ export default function Login() {
       <ToAction
         actionTitle="Ещё не зарегистрированы?"
         nameButton="Регистрация"
-        patch="/"
+        patch="/signup"
       />
     </Form>
   );

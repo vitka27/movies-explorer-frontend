@@ -22,11 +22,6 @@ export default function BurgerMenu({ IsOpenBurger }) {
         <span className="burger-menu__icon-line" aria-hidden="true"></span>
         <span className="burger-menu__icon-line" aria-hidden="true"></span>
       </button>
-      {/* {isOpenBurgerMenu && (
-        <ul className="burger-menu__list">
-          <NavigationMenu
-        </ul>
-      )} */}
     </div>
   );
 }

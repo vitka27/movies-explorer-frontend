@@ -1,5 +1,6 @@
 .form {
   background-color: #202020;
+  padding: 70px 0px;
 }
 .form__wrap {
   display: flex;
@@ -9,11 +10,9 @@
   width: 396px;
   margin: auto;
 }
-.form__logo {
-}
-.form__img {
-}
 .form__title {
+  margin: 0;
+  padding: 40px 0px 40px;
   color: #fff;
   font-family: Inter;
   font-size: 24px;

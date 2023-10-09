@@ -1,5 +1,5 @@
 import React from 'react'
-import landingLogo from '../../../image/landing-logo.svg'
+import landingLogo from '../../../images/landing-logo.svg'
 
 export default function Promo() {
   return (

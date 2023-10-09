@@ -1,10 +1,12 @@
-
 .input {
   display: flex;
   flex-direction: column;
+  padding-top: 8px;
+}
+.input:first-child {
+  padding-top: 0px;
 }
 .input__label {
-  padding-top: 24px;
   color: #8b8b8b;
   font-family: Inter;
   font-size: 10px;
@@ -15,8 +17,7 @@
 .input__label:first-child {
 }
 .input__text {
-  padding: 0;
-  padding-top: 15px;
+  padding: 5px 0px 10px 0px;
   border: none;
   border-bottom: 1px solid #424242;
   background: transparent;
@@ -32,4 +33,12 @@
   outline: none;
 }
 .input__error {
+  padding-top: 6px;
+  height: 12px;
+  color: #ee3465;
+  font-family: Inter;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }

@@ -1,5 +1,5 @@
 import React from 'react'
-import imgCard from '../../../image/movie-test.png'
+import imgCard from '../../../images/movie-test.png'
 
 export default function MoviesCard() {
   return (

@@ -14,7 +14,7 @@ export default function Register() {
       <ToAction
         actionTitle="Уже зарегистрированы?"
         nameButton="Войти"
-        patch="/"
+        patch="/signin"
       />
     </Form>
   );

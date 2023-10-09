@@ -15,6 +15,17 @@
   justify-content: center;
   cursor: pointer;
 
+}
+.navigation-auth-menu__item:last-child {
+  width: 76px;
+  height: 32px;
+  border-radius: 3px;
+  background: #3ddc84;
+}
+.navigation-auth-menu__link {
+  text-decoration: none;
+  border: none;
+
   color: #fff;
   font-family: Inter;
   font-size: 12px;
@@ -22,14 +33,6 @@
   font-weight: 500;
   line-height: 16px; /* 133.333% */
 }
-.navigation-auth-menu__item:last-child {
-  width: 76px;
-  height: 32px;
-  border-radius: 3px;
-  background: #3ddc84;
-  margin-right: 70px;
-}
-
 .navigation-auth-menu__profile {
   list-style: none;
   width: 100px;

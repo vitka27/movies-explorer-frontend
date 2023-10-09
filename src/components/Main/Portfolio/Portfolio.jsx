@@ -1,5 +1,5 @@
 import React from "react";
-import arrow from "../../../image/arrow.svg";
+import arrow from "../../../images/arrow.svg";
 
 export default function Portfolio() {
   return (

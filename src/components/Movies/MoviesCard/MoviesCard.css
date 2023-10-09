@@ -30,7 +30,7 @@
   width: 24px;
   height: 24px;
 
-  background-image: url(../../../image/heart-disable.svg);
+  background-image: url(../../../images/heart-disable.svg);
   background-repeat: no-repeat;
   background-position: center;
   background-color: #313131;
@@ -39,7 +39,7 @@
   border-radius: 50%;
 }
 .movies-card__like_active {
-  background-image: url(../../../image/heart-active.svg);
+  background-image: url(../../../images/heart-active.svg);
 }
 .movies-card__time {
   grid-area: time;
