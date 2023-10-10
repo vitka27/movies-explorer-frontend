@@ -9,7 +9,7 @@ import Profile from "../Auth/Profile/Profile";
 import NotFound from "../NotFound/NotFound";
 
 function App() {
-  const isAuth = false;
+  const isAuth = true;
   const visabilityPathHeaderFooter = ["/", "/profile", "/movies"];
 
   return (

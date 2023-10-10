@@ -4,7 +4,7 @@ import NavigationAuthMenu from "./NavigationAuthMenu/NavigationAuthMenu";
 
 export default function Navigation({ isAuth, isOpenBurgerMenu }) {
   return (
-    <div
+    <nav
       className={`navigation
     ${!isAuth ? "navigation__block_justify_end" : ""}
     ${isOpenBurgerMenu ? "navigation__block_active" : ""}`}
@@ -17,6 +17,6 @@ export default function Navigation({ isAuth, isOpenBurgerMenu }) {
       ) : (
         <NavigationAuthMenu isAuth={isAuth} />
       )}
-    </div>
+    </nav>
   );
 }
