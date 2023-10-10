@@ -43,11 +43,13 @@
   padding-right: 10px;
 }
 .search-form__form-button {
+  cursor: pointer;
   width: 59px;
   height: 34px;
   border: none;
   border-radius: 49px;
   background-color: #4285f4;
+
   color: #fff;
   text-align: center;
   font-feature-settings: "clig" off, "liga" off;
@@ -56,6 +58,9 @@
   font-style: normal;
   font-weight: 500;
   line-height: 18px; /* 163.636% */
+}
+.search-form__form-button:hover {
+  opacity: 0.8;
 }
 
 @media screen and (max-width: 320px) {

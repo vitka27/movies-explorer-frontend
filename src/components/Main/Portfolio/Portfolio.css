@@ -51,3 +51,6 @@
   line-height: 60px; /* 200% */
   letter-spacing: -1.2px;
 }
+.portfolio__link-symbol:hover {
+  opacity: 0.7;
+}

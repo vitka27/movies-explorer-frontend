@@ -10,12 +10,12 @@
   justify-content: center;
   align-items: center;
 
-  border-radius: 6px;
-  background: #2f2f2f;
   width: 320px;
   height: 36px;
   border: none;
+  border-radius: 6px;
   cursor: pointer;
+  background: #2f2f2f;
 
   color: #fff;
   text-align: center;
@@ -24,4 +24,7 @@
   font-style: normal;
   font-weight: 500;
   line-height: normal;
+}
+.preloader__title:hover {
+  opacity: 0.8;
 }
