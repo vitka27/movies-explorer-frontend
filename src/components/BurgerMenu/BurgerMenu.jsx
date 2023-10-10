@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { disableBodyScroll, enableBodyScroll } from "body-scroll-lock";
 
 export default function BurgerMenu({ IsOpenBurger }) {
   const [isOpenBurgerMenu, setIsOpenBurgerMenu] = useState(false);
@@ -7,6 +8,8 @@ export default function BurgerMenu({ IsOpenBurger }) {
     setIsOpenBurgerMenu(!isOpenBurgerMenu);
     IsOpenBurger(!isOpenBurgerMenu);
   };
+
+  isOpenBurgerMenu ? disableBodyScroll(document) : enableBodyScroll(document)
 
   return (
     <div className="burger-menu">
