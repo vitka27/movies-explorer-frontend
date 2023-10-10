@@ -10,21 +10,25 @@ import NotFound from "../NotFound/NotFound";
 
 function App() {
   const isAuth = false;
+  const visabilityPathHeaderFooter = ["/", "/profile", "/movies"];
 
   return (
     <div className="wrapper">
-      {["/", "/profile", "/movies"].includes(useLocation().pathname) && (
+      {visabilityPathHeaderFooter.includes(useLocation().pathname) && (
         <Header isAuth={isAuth} />
       )}
       <Routes>
         <Route path="/" element={<Main />} />
         <Route path="/movies" element={<Movies />} />
+        {/* //! добавить сохраненные видео */}
         <Route path="/signin" element={<Login />} />
         <Route path="/signup" element={<Register />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
-      {["/", "/profile", "/movies"].includes(useLocation().pathname) && <Footer />}{" "}
+      {visabilityPathHeaderFooter.includes(useLocation().pathname) && (
+        <Footer />
+      )}{" "}
     </div>
   );
 }

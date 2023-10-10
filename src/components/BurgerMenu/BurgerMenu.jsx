@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import NavigationMenu from "../Navigation/NavigationMenu/NavigationMenu";
 
 export default function BurgerMenu({ IsOpenBurger }) {
   const [isOpenBurgerMenu, setIsOpenBurgerMenu] = useState(false);
@@ -16,7 +15,7 @@ export default function BurgerMenu({ IsOpenBurger }) {
           isOpenBurgerMenu ? "burger-menu__open" : ""
         }`}
         onClick={handleBurgerMenu}
-        aria-label="<Бургер меню>"
+        aria-label="Бургер меню"
       >
         <span className="burger-menu__icon-line" aria-hidden="true"></span>
         <span className="burger-menu__icon-line" aria-hidden="true"></span>

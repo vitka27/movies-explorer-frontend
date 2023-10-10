@@ -2,15 +2,15 @@ import React from "react";
 
 export default function AboutProject() {
   return (
-    <section className="about-project">
-      <h1 className="about-project__title">О проекте</h1>
+    <article className="about-project">
+      <h2 className="about-project__title">О проекте</h2>
       <div className="about-project__content">
-        <h1 className="about-project__content-title">
+        <h3 className="about-project__content-title">
           Дипломный проект включал 5 этапов
-        </h1>
-        <h1 className="about-project__content-title">
+        </h3>
+        <h3 className="about-project__content-title">
           На выполнение диплома ушло 5 недель
-        </h1>
+        </h3>
         <p className="about-project__content-text">
           Составление плана, работу над бэкендом, вёрстку, добавление
           функциональности и финальные доработки.
@@ -21,11 +21,11 @@ export default function AboutProject() {
         </p>
       </div>
       <div className="about-project__graphick">
-        <p className="about-project__graphick-title">1 неделя</p>
-        <p className="about-project__graphick-title">4 недели</p>
+        <h4 className="about-project__graphick-title">1 неделя</h4>
+        <h4 className="about-project__graphick-title">4 недели</h4>
         <p className="about-project__graphick-text">Back-end</p>
         <p className="about-project__graphick-text">Front-end</p>
       </div>
-    </section>
+    </article>
   );
 }

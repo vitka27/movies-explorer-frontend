@@ -14,6 +14,7 @@ export default function FilterCheckbox({ title }) {
           type="checkbox"
           value={isChecked}
           onChange={handleChange}
+          aria-label="чекбокс"
         />
         <div className="filter-checkbox__block-slider"></div>
       </label>

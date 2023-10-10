@@ -4,7 +4,7 @@ import MoviesCard from '../MoviesCard/MoviesCard'
 export default function MoviesCardList() {
   return (
 
-    <section className="movies-card-list">
+    <article className="movies-card-list">
       <MoviesCard />
       <MoviesCard />
       <MoviesCard />
@@ -13,8 +13,7 @@ export default function MoviesCardList() {
       <MoviesCard />
       <MoviesCard />
       <MoviesCard />
-
-    </section>
+    </article>
 
   )
 }
