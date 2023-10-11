@@ -5,7 +5,7 @@
   grid-template-rows: 1fr 32px auto;
   grid-template-areas:
     "image image"
-    "title like"
+    "title action"
     "time time";
   row-gap: 14px;
 }
@@ -24,23 +24,39 @@
   font-weight: 500;
   line-height: normal;
 }
-.movies-card__like {
-  grid-area: like;
+.movies-card__action {
+  grid-area: action;
   justify-self: end;
-
   width: 24px;
   height: 24px;
 
-  background-image: url(../../../images/heart-disable.svg);
-  background-repeat: no-repeat;
-  background-position: center;
-  background-color: #313131;
+  background: transparent;
   border: none;
   cursor: pointer;
+}
+.movies-card__action:hover {
+  opacity: 0.8;
+}
+.movies-card__like__active {
+  background-image: url(../../../images/heart-active.svg);
+  background-repeat: no-repeat;
+  background-color: #313131;
+  background-position: center;
   border-radius: 50%;
 }
-.movies-card__like_active {
-  background-image: url(../../../images/heart-active.svg);
+.movies-card__like__disactive {
+  background-image: url(../../../images/heart-disable.svg);
+  background-repeat: no-repeat;
+  background-color: #313131;
+  background-position: center;
+  border-radius: 50%;
+}
+.movies-card__delete:hover {
+  background-image: url(../../../images/delete.svg);
+  background-repeat: no-repeat;
+  background-color: #313131;
+  background-position: center;
+  border-radius: 50%;
 }
 .movies-card__time {
   grid-area: time;

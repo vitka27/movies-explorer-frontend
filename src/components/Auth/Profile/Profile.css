@@ -1,10 +1,11 @@
 .profile {
   background: #202020;
-  height: calc(100vh - 74px);
   display: flex;
+  min-height: 100%;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 70px 0px;
 }
 .profile__form {
   max-width: 410px;

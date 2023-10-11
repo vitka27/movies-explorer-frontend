@@ -7,12 +7,12 @@ export default function Profile() {
         <h3 className="profile__title">Привет, Виталий!</h3>
         <fieldset className="profile__inputs">
           <div className="profile__input">
-            <label htmlFor="" className="profile__input-name">
+            <label htmlFor="userName" className="profile__input-name" aria-label="Имя">
               Имя
               <input
                 type="text"
                 className="profile__input-text"
-                id=""
+                id="userName"
                 // value={""}
                 aria-label="Имя"
               />
@@ -20,12 +20,12 @@ export default function Profile() {
             <span className="profile__input-error"></span>
           </div>
           <div className="profile__input">
-            <label htmlFor="" className="profile__input-name">
+            <label htmlFor="userEmail" className="profile__input-name" aria-label="E-mail">
               E-mail
               <input
                 type="text"
                 className="profile__input-text"
-                id=""
+                id="userEmail"
                 // value={""}
                 aria-label="E-mail"
               />
