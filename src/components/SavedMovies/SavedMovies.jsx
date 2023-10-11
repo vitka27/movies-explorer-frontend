@@ -8,7 +8,7 @@ export default function SavedMovies() {
     <>
     <SearchForm />
     <MoviesCardList />
-    <Preloader />
+    {/* <Preloader /> */}
   </>
   )
 }

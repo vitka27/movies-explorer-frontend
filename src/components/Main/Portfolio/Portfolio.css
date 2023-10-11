@@ -5,7 +5,7 @@
 }
 .portfolio__title {
   margin: 0;
-  padding-bottom: 70px;
+  padding-bottom: 50px;
 
   color: #8b8b8b;
   font-feature-settings: "clig" off, "liga" off;
@@ -20,11 +20,10 @@
   padding: 0;
 }
 .portfolio__link {
+  margin: 0px 0px 23px 0px;
+  padding-bottom: 6px;
   display: flex;
   justify-content: space-between;
-
-  padding-bottom: 19px;
-  padding-top: 20px;
   border-bottom: 1px solid #dadada;
 
   color: #fff;
@@ -35,11 +34,9 @@
   line-height: 50px; /* 166.667% */
   letter-spacing: -1.2px;
 }
-.portfolio__link :first-child {
-  padding-top: 0;
-}
 .portfolio__link:last-child {
   border-bottom: none;
+  margin: 0;
 }
 .portfolio__link-symbol {
   text-decoration: none;

@@ -49,6 +49,8 @@
   letter-spacing: -0.56px;
 }
 .techs__stack {
+  padding: 0;
+  margin: 0;
   display: flex;
   flex-wrap: wrap;
   gap: 10px;

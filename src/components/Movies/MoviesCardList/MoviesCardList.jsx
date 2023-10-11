@@ -9,6 +9,7 @@ export default function MoviesCardList() {
       <MoviesCard />
       <MoviesCard />
       <MoviesCard />
+      {/* <MoviesCard />
       <MoviesCard />
       <MoviesCard />
       <MoviesCard />
@@ -20,9 +21,7 @@ export default function MoviesCardList() {
       <MoviesCard />
       <MoviesCard />
       <MoviesCard />
-      <MoviesCard />
-      <MoviesCard />
-      <MoviesCard />
+      <MoviesCard /> */}
 
 
     </article>

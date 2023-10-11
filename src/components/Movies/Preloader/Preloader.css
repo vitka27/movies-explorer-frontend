@@ -1,5 +1,6 @@
 .preloader {
-  padding-top: 60px;
+  padding-top: 53px;
+  padding-bottom: 100px;
   background-color: #202020;
   display: flex;
   justify-content: center;
