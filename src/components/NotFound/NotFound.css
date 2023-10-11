@@ -20,7 +20,7 @@
 .not-found__massage-err {
   margin: 0;
   margin-bottom: 180px;
-  
+
   color: #fff;
   text-align: center;
   font-family: Inter;
@@ -38,4 +38,7 @@
   font-style: normal;
   font-weight: 400;
   line-height: normal;
+}
+.not-found__link:hover {
+  opacity: 0.7;
 }

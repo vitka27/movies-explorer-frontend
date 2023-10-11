@@ -4,7 +4,7 @@ export default function Profile() {
   return (
     <section className="profile">
       <form className="profile__form" noValidate="" action="#">
-        <h3 className="profile__title">Hello, Word!</h3>
+        <h3 className="profile__title">Привет, Виталий!</h3>
         <fieldset className="profile__inputs">
           <div className="profile__input">
             <label htmlFor="" className="profile__input-name">
@@ -13,7 +13,7 @@ export default function Profile() {
                 type="text"
                 className="profile__input-text"
                 id=""
-                value={"VitKA"}
+                // value={""}
                 aria-label="Имя"
               />
             </label>
@@ -26,7 +26,7 @@ export default function Profile() {
                 type="text"
                 className="profile__input-text"
                 id=""
-                value={"VitKA@example.com"}
+                // value={""}
                 aria-label="E-mail"
               />
             </label>

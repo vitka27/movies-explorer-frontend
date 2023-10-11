@@ -1,18 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import imgUser from "../../../images/profile.svg";
+// import imgUser from "";
 
 export default function NavigationAuthMenu({ isAuth }) {
   return isAuth ? (
-    <ul className="navigation-auth-menu">
-      <li className="navigation-auth-menu__profile">
-        Акканут
-        <button className="navigatio-auth-menu__link" aria-label="Акканут">
-          <img src={imgUser} alt="" className="navigation-auth-menu__img" />
-        </button>
-      </li>
-    </ul>
+    <Link to="/profile" className="navigation-auth-menu__profile-link">
+      Акканут
+      <span className="navigation-auth-menu__profile-img" />
+    </Link>
   ) : (
     <ul className="navigation-auth-menu">
       <li className="navigation-auth-menu__item">
