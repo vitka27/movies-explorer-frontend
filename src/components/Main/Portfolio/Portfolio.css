@@ -1,6 +1,7 @@
 .portfolio {
-  background: #202020;
-  padding: 0px 70px 125px;
+}
+.portfolio__container {
+  padding: 0px 0px 125px;
   border: none;
 }
 .portfolio__title {
@@ -20,10 +21,10 @@
   padding: 0;
 }
 .portfolio__link {
-  margin: 0px 0px 23px 0px;
-  padding-bottom: 6px;
   display: flex;
   justify-content: space-between;
+  margin: 0px 0px 23px 0px;
+  padding-bottom: 6px;
   border-bottom: 1px solid #dadada;
 
   color: #fff;
@@ -40,6 +41,7 @@
 }
 .portfolio__link-symbol {
   text-decoration: none;
+
   color: #fff;
   font-family: Inter;
   font-size: 30px;
@@ -50,4 +52,18 @@
 }
 .portfolio__link-symbol:hover {
   opacity: 0.7;
+}
+@media screen and (max-width: 768px) {
+  .portfolio__container{
+    padding: 0px 0px 90px;
+
+  }
+  .portfolio__link {
+    font-size: 28px;
+    letter-spacing: -1.12px;
+  }
+  .portfolio__link-symbol {
+    font-size: 28px;
+    letter-spacing: -1.12px;
+  }
 }

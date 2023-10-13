@@ -1,5 +1,35 @@
 .wrapper {
+  display: flex;
+  flex-direction: column;
   height: 100vh;
+}
+.wrapper__section {
+  padding: 0px 70px;
+}
+.wrapper__section-container {
+  margin: auto;
+  min-width: 320px;
   max-width: 1280px;
 }
+.wrapper__main{
+  flex: 1 0 auto;
+}
+.wrapper__section_theme_blue {
+  background-color: #073042;
+}
+.wrapper__section_theme_dark {
+  background-color: #202020;
+}
+.wrapper__section_theme_lite-dark {
+  background-color: #272727;
+}
+@media screen and (max-width: 768px) {
+  .wrapper__section {
+    padding: 0px 50px;
+  }
+}
+@media screen and (max-width: 320px) {
+  .wrapper__section {
+  }
 
+}

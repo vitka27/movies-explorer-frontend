@@ -1,11 +1,13 @@
 .about-project {
-  padding: 110px 70px;
-  background-color: #202020;
+}
+.about-project__container {
+  padding: 110px 0px;
 }
 .about-project__title {
   margin: 0;
   padding-bottom: 23px;
   border-bottom: 1px solid #dadada;
+
   color: #fff;
   font-family: Inter;
   font-size: 22px;
@@ -15,9 +17,9 @@
   letter-spacing: -0.88px;
 }
 .about-project__content {
-  padding-top: 70px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
+  padding-top: 70px;
   gap: 26px 40px;
 }
 .about-project__content-title {
@@ -42,12 +44,10 @@
 .about-project__graphick {
   padding-top: 110px;
   display: grid;
-  grid-template-columns: 228px auto;
+  grid-template-columns: minmax(100px, 228px) minmax(184px, auto);
   grid-template-rows: 36px auto;
   grid-row-gap: 14px;
 }
-
-/* ! цвета поправить */
 .about-project__graphick-title {
   display: flex;
   justify-content: center;
@@ -73,10 +73,27 @@
 .about-project__graphick-text {
   margin: 0;
   color: #8b8b8b;
+
   text-align: center;
   font-family: Inter;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
   line-height: 17px; /* 121.429% */
+}
+
+@media screen and (max-width: 768px) {
+  .about-project__container {
+    padding: 90px 0px;
+  }
+  .about-project__content-text {
+    font-size: 12px;
+    line-height: 18px; /* 150% */
+  }
+  .about-project__graphick{
+    padding-top: 90px;
+  }
+  .about-project__graphick {
+    grid-template-columns: 140px auto;
+  }
 }

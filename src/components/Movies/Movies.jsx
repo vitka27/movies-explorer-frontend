@@ -5,11 +5,11 @@ import SearchForm from './SearchForm/SearchForm'
 
 export default function Movies() {
   return (
-    <>
+    <main className='wrapper__main'>
       <SearchForm />
       <MoviesCardList />
       <Preloader />
-    </>
+    </main>
   )
 }
 

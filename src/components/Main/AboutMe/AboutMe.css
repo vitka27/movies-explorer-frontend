@@ -1,6 +1,7 @@
 .about-me {
-  background-color: #202020;
-  padding: 110px 70px 100px;
+}
+.about-me__container {
+  padding: 110px 0px 100px;
 }
 .about-me__title {
   margin: 0;
@@ -30,6 +31,7 @@
 }
 .about-me__info-name {
   margin: 0;
+
   color: #fff;
   font-family: Inter;
   font-size: 50px;
@@ -41,6 +43,7 @@
 .about-me__info-experience {
   margin: 0;
   padding-top: 18px;
+
   color: #fff;
   font-feature-settings: "clig" off, "liga" off;
   font-family: Inter;
@@ -75,4 +78,33 @@
 }
 .about-me__info-link-github:hover {
   opacity: 0.7;
+}
+
+@media screen and (max-width: 768px) {
+  .about-me__container {
+    padding: 90px 0px;
+  }
+  .about-me__info-name {
+    font-size: 40px;
+    line-height: 40px; /* 100% */
+    letter-spacing: -1.6px;
+  }
+  .about-me__info-experience {
+    font-size: 12px;
+    line-height: 18px; /* 150% */
+    padding-top: 16px;
+  }
+  .about-me__info-text {
+    font-size: 12px;
+    line-height: 18px; /* 150% */
+    max-width: 364px;
+    padding-top: 20px;
+  }
+  .about-me__info-link-github {
+    margin-top: 80px;
+  }
+  .about-me__info-image {
+    max-width: 255px;
+    max-height: 307px;
+  }
 }
