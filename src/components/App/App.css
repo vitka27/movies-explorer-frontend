@@ -1,14 +1,15 @@
+
 .wrapper {
   display: flex;
   flex-direction: column;
-  min-width: 320px;
-  max-width: 1280px;
   height: 100vh;
 }
 .wrapper__section {
-  padding: 0px 70px;
+  padding: 0px clamp(50px, 5vw, 70px);;
+
 }
 .wrapper__section-container {
+  max-width: 1280px;
   margin: auto;
 }
 .wrapper__main {
@@ -25,11 +26,13 @@
 }
 @media screen and (max-width: 768px) {
   .wrapper__section {
-    padding: 0px 50px;
+    padding: 0px clamp(16px, 5vw, 50px);
   }
 }
-@media screen and (max-width: 320px) {
+/* @media screen and (max-width: 320px) {
   .wrapper__section {
     padding: 0px 16px;
   }
-}
+} */
+
+
