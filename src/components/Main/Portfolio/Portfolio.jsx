@@ -3,7 +3,7 @@ import React from "react";
 export default function Portfolio() {
   return (
     <section className="wrapper__section wrapper__section_theme_dark portfolio">
-      <div className=" portfolio__container wrapper__section-container">
+      <div className=" wrapper__section-container portfolio__container ">
         <h2 className="portfolio__title">Портфолио</h2>
         <ul className="portfolio__links">
           <li className="portfolio__link">

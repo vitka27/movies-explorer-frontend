@@ -1,6 +1,8 @@
 .wrapper {
   display: flex;
   flex-direction: column;
+  min-width: 320px;
+  max-width: 1280px;
   height: 100vh;
 }
 .wrapper__section {
@@ -8,10 +10,8 @@
 }
 .wrapper__section-container {
   margin: auto;
-  min-width: 320px;
-  max-width: 1280px;
 }
-.wrapper__main{
+.wrapper__main {
   flex: 1 0 auto;
 }
 .wrapper__section_theme_blue {
@@ -30,6 +30,6 @@
 }
 @media screen and (max-width: 320px) {
   .wrapper__section {
+    padding: 0px 16px;
   }
-
 }

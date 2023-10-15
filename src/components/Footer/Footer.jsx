@@ -3,7 +3,7 @@ import React from 'react'
 export default function Footer() {
   return (
     <footer className="wrapper__section wrapper__section_theme_dark footer">
-      <div className=" footer__container wrapper__section-container">
+      <div className=" wrapper__section-container footer__container">
         <h2 className="footer__title">Учебный проект Яндекс.Практикум х BeatFilm.</h2>
         <div className="footer__block">
           <div className="footer__coopirait">
