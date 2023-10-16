@@ -1,9 +1,8 @@
 import React from "react";
 import { useState } from "react";
-import { useLocation } from 'react-router-dom'
-import imgCard from "../../../images/movie-test.png";
+import { useLocation } from "react-router-dom";
 
-export default function MoviesCard() {
+export default function MoviesCard({ movie }) {
   const isSavedMoviesLocation = "/saved-movies" === useLocation().pathname;
 
   const [isLike, setIsLike] = useState(false);
@@ -12,8 +11,8 @@ export default function MoviesCard() {
   }
   return (
     <figure className="movies-card">
-      <img src={imgCard} alt="" className="movies-card__img" />
-      <figcaption className="movies-card__title">33 слова о дизайне</figcaption>
+      <img src={movie.img} alt="" className="movies-card__img" />
+      <figcaption className="movies-card__title">{movie.title}</figcaption>
       <button
         type="button"
         aria-label="Мне нравится"
@@ -26,7 +25,7 @@ export default function MoviesCard() {
         }
         onClick={handleClick}
       ></button>
-      <span className="movies-card__time">1ч42м</span>
+      <span className="movies-card__time">{movie.time}</span>
     </figure>
   );
 }

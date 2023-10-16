@@ -1,14 +1,13 @@
 import React from "react";
 import SearchForm from "../Movies/SearchForm/SearchForm";
 import MoviesCardList from "../Movies/MoviesCardList/MoviesCardList";
-import Preloader from '../Movies/Preloader/Preloader'
+import { SAVE_MOVIES } from "../../utils/const";
 
 export default function SavedMovies() {
   return (
     <main className="wrapper__main">
       <SearchForm />
-      <MoviesCardList />
-      <Preloader />
+      <MoviesCardList movies={SAVE_MOVIES} />
     </main>
   );
 }

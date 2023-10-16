@@ -14,6 +14,7 @@ export default function Profile() {
                 className="profile__input-text"
                 id="userName"
                 // value={""}
+                placeholder="Виталий"
                 aria-label="Имя"
               />
             </label>
@@ -27,6 +28,7 @@ export default function Profile() {
                 className="profile__input-text"
                 id="userEmail"
                 // value={""}
+                placeholder="pochta@yandex.ru"
                 aria-label="E-mail"
               />
             </label>

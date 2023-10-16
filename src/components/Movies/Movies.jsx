@@ -1,15 +1,13 @@
-import React from 'react'
-import MoviesCardList from './MoviesCardList/MoviesCardList'
-import Preloader from './Preloader/Preloader'
-import SearchForm from './SearchForm/SearchForm'
+import React from "react";
+import MoviesCardList from "./MoviesCardList/MoviesCardList";
+import SearchForm from "./SearchForm/SearchForm";
+import { MOVIES } from "../../utils/const.js";
 
 export default function Movies() {
   return (
-    <main className='wrapper__main'>
+    <main className="wrapper__main">
       <SearchForm />
-      <MoviesCardList />
-      <Preloader />
+      <MoviesCardList movies={MOVIES} />
     </main>
-  )
+  );
 }
-
