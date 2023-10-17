@@ -63,6 +63,10 @@
 @media screen and (max-width: 768px) {
   .filter-checkbox {
     margin-left: 20px;
-    padding-left: 20px;
+    padding-left: 15px;
+  }
+  .filter-checkbox__title{
+    padding-left: 12px;
+    padding-right: 5px;
   }
 }
