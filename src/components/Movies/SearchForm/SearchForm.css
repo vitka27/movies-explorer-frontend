@@ -43,9 +43,11 @@
   padding-right: 10px;
 }
 .search-form__form-button {
+  margin: 0;
+  padding: 0;
   cursor: pointer;
-  width: 59px;
-  height: 34px;
+  min-width: 59px;
+  min-height: 34px;
   border: none;
   border-radius: 49px;
   background-color: #4285f4;
@@ -62,7 +64,12 @@
 .search-form__form-button:hover {
   opacity: 0.8;
 }
-
+@media screen and (max-width: 768px) {
+  .search-form {
+    padding-top: 80px;
+    padding-bottom: 110px;
+  }
+}
 @media screen and (max-width: 320px) {
   .search-form__wrapper {
     flex-direction: column;

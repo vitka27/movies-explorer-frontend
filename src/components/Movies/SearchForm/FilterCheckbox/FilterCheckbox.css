@@ -59,3 +59,10 @@
 .filter-checkbox__block-input:checked + .filter-checkbox__block-slider:before {
   background-color: #2be080;
 }
+
+@media screen and (max-width: 768px) {
+  .filter-checkbox {
+    margin-left: 20px;
+    padding-left: 20px;
+  }
+}

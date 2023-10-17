@@ -1,12 +1,10 @@
-
 .wrapper {
   display: flex;
   flex-direction: column;
   height: 100vh;
 }
 .wrapper__section {
-  padding: 0px clamp(50px, 5vw, 70px);;
-
+  padding: 0px clamp(30px, 5vw, 70px);
 }
 .wrapper__section-container {
   max-width: 1280px;
@@ -26,7 +24,7 @@
 }
 @media screen and (max-width: 768px) {
   .wrapper__section {
-    padding: 0px clamp(16px, 5vw, 50px);
+    padding: 0px clamp(16px, 5vw, 30px);
   }
 }
 /* @media screen and (max-width: 320px) {
@@ -34,5 +32,3 @@
     padding: 0px 16px;
   }
 } */
-
-

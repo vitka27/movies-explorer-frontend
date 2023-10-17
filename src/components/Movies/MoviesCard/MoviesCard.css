@@ -2,7 +2,7 @@
   margin: 0;
   display: grid;
   justify-content: center;
-  grid-template-rows: 1fr 32px auto;
+  grid-template-columns: minmax(auto, 339px) 44px;
   grid-template-areas:
     "image image"
     "title action"
