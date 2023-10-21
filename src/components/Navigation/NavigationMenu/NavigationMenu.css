@@ -56,3 +56,9 @@
     padding-bottom: 4px;
   }
 }
+@media screen and (max-width: 320px) {
+  .navigation-menu{
+    padding-top: 145px;
+  }
+
+}
