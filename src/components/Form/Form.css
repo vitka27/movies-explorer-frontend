@@ -8,10 +8,10 @@
   flex-direction: column;
   justify-content: center;
   max-width: 396px;
+  height: 100%;
   margin: auto;
 }
 .form__header-logo{
-  padding-top: 38px;
 }
 .form__title {
   margin: 0;
@@ -29,10 +29,16 @@
 .form__buttons{
   display: flex;
   flex-direction: column;
+  padding-bottom: 70px;
 }
 .form__form {
   display: flex;
   flex-direction: column;
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  justify-content: space-between;
+
 }
 @media screen and (max-width: 320px) {
   .form {
@@ -47,11 +53,7 @@
     padding-bottom: 80px;
   }
   .form__form{
-    box-sizing: border-box;
     padding: 0px 15px;
-    width: 100%;
-    height: 100%;
-    justify-content: space-between;
   }
   .form__buttons{
     padding-bottom: 20px;
