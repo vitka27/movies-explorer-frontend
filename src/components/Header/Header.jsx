@@ -1,4 +1,5 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
 import Navigation from "../Navigation/Navigation";
 import BurgerMenu from "../BurgerMenu/BurgerMenu";
 import Logo from "../Header/Logo/Logo";
@@ -8,7 +9,7 @@ export default function Header({ isAuth }) {
   const [isOpenBurgerMenu, setIsOpenBurgerMenu] = useState(false);
 
   return (
-    <header className="wrapper__section wrapper__section_theme_blue header">
+    <header className={useLocation().pathname === "/" ? 'wrapper__section wrapper__section_theme_blue header' : 'wrapper__section_theme_dark'}>
       <div className=" header__container wrapper__section-container">
         <Logo />
         <Navigation isAuth={isAuth} isOpenBurgerMenu={isOpenBurgerMenu} />
