@@ -2,8 +2,8 @@ import React from "react";
 
 export default function Profile() {
   return (
-    <section className="profile">
-      <form className="profile__form" noValidate="" action="#">
+    <section className="wrapper__section profile">
+      <form className="wrapper__section-container profile__form" noValidate="" action="#">
         <h3 className="profile__title">Привет, Виталий!</h3>
         <fieldset className="profile__inputs">
           <div className="profile__input">

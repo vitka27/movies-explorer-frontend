@@ -13,3 +13,8 @@
     gap: 30px;
   }
 }
+@media screen and (max-width: 320px) {
+  .movies-card-list__container{
+    padding-top: 50px;
+  }
+}

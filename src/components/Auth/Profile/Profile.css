@@ -4,7 +4,8 @@
   height: 100%;
   flex-direction: column;
   align-items: center;
-  padding: 70px 0px;
+  padding-top: 70px;
+  padding-bottom: 70px;
 }
 .profile__form {
   max-width: 410px;
@@ -99,4 +100,17 @@
 .profile__button_type_exit {
   color: #ee3465;
   font-weight: 500;
+}
+
+@media screen and (max-width: 320px) {
+  .profile__title {
+    padding-bottom: 80px;
+  }
+  .profile__inputs {
+    padding-left: 13px;
+    padding-right: 13px;
+  }
+  .profile__buttons{
+    padding-top: 360px;
+  }
 }

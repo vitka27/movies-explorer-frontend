@@ -36,7 +36,6 @@
   right: 0;
   bottom: 0;
   background-color: #343434;
-  ;
   border-radius: 20px;
   cursor: pointer;
   transition: 0.3s;
@@ -65,8 +64,19 @@
     margin-left: 20px;
     padding-left: 15px;
   }
-  .filter-checkbox__title{
+  .filter-checkbox__title {
     padding-left: 12px;
     padding-right: 5px;
+  }
+}
+@media screen and (max-width: 320px) {
+  .filter-checkbox {
+    margin: 0;
+    padding: 0;
+    border: none;
+  }
+  .filter-checkbox__title {
+    font-size: 11px;
+    line-height: 18px; /* 163.636% */
   }
 }

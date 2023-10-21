@@ -3,7 +3,7 @@
   cursor: pointer;
   border-radius: 3px;
   background: #4285f4;
-  width: 396px;
+  max-width: 396px;
   height: 45px;
   margin-top: 70px;
 
