@@ -26,7 +26,7 @@
   transition: transform 0.3s ease-in-out;
 }
 .burger-menu__open .burger-menu__icon-line:nth-child(1) {
-  /* width: 22px; */
+  width: 22px;
   transform: translateY(9px) rotate(135deg);
 }
 .burger-menu__open .burger-menu__icon-line:nth-child(2) {
@@ -34,7 +34,7 @@
   opacity: 0;
 }
 .burger-menu__open .burger-menu__icon-line:nth-child(3) {
-  /* width: 22px; */
+  width: 22px;
   transform: translateY(-9px) rotate(-135deg);
 }
 

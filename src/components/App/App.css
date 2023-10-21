@@ -1,3 +1,6 @@
+/* * {
+  border: 1px solid red;
+} */
 .wrapper {
   display: flex;
   flex-direction: column;
@@ -5,7 +8,7 @@
   min-height: 100%;
 }
 .wrapper__section {
-  padding: 0px clamp(30px, 5vw, 70px);
+  padding: 0px clamp(50px, 1vw, 70px);
 }
 .wrapper__section-container {
   max-width: 1280px;
@@ -25,11 +28,11 @@
 }
 @media screen and (max-width: 768px) {
   .wrapper__section {
-    padding: 0px clamp(14px, 5vw, 30px);
+    padding: 0px clamp(14px, 7vw, 40px);
   }
 }
-/* @media screen and (max-width: 320px) {
+@media screen and (max-width: 320px) {
   .wrapper__section {
-    padding: 0px 16px;
+    padding: 0px 14px;
   }
-} */
+}

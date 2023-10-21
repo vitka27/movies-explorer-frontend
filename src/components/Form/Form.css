@@ -40,6 +40,16 @@
   justify-content: space-between;
 
 }
+
+@media screen and (max-width: 768px) {
+  .form__form{
+    height: auto;
+  }
+  .form__buttons{
+    padding-top: 50px;
+  }
+
+}
 @media screen and (max-width: 320px) {
   .form {
     padding-top: 18px;
