@@ -26,4 +26,12 @@
 .to-action__register-link:hover {
   opacity: 0.7;
 }
+@media screen and (max-width: 320px) {
+  .to-action__title {
+    font-size: 12px;
+  }
+  .to-action__register-link {
+    font-size: 12px;
+  }
 
+}
