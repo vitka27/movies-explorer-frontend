@@ -11,7 +11,7 @@ export default function MoviesCard({ movie }) {
   }
   return (
     <figure className="movies-card">
-      <img src={movie.img} alt="" className="movies-card__img" />
+      <img src={movie.img} alt={movie.title} className="movies-card__img" />
       <figcaption className="movies-card__title">{movie.title}</figcaption>
       <button
         type="button"

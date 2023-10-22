@@ -9,7 +9,7 @@ export default function Header({ isAuth }) {
   const [isOpenBurgerMenu, setIsOpenBurgerMenu] = useState(false);
 
   return (
-    <header className={useLocation().pathname === "/" ? 'wrapper__section wrapper__section_theme_blue header' : 'wrapper__section_theme_dark'}>
+    <header className={useLocation().pathname === "/" ? 'wrapper__section wrapper__section_theme_blue header' : 'wrapper__section wrapper__section_theme_dark header'}>
       <div className=" header__container wrapper__section-container">
         <Logo />
         <Navigation isAuth={isAuth} isOpenBurgerMenu={isOpenBurgerMenu} />
