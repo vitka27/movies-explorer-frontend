@@ -68,7 +68,7 @@
     padding-bottom: 110px;
   }
 }
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 600px) {
   .search-form {
     padding-bottom: 45px;
   }

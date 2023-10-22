@@ -28,6 +28,7 @@
 }
 .about-me__info-block {
   max-width: 600px;
+  padding-right: 20px;
 }
 .about-me__info-name {
   margin: 0;
@@ -109,7 +110,7 @@
   }
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 500px) {
   .about-me__container {
     padding: 70px 0px;
   }
@@ -122,6 +123,7 @@
     flex-direction: column;
   }
   .about-me__info-image {
+    align-self: center;
     max-width: 292px;
     max-height: 352px;
   }
