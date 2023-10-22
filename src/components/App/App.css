@@ -6,6 +6,8 @@
   flex-direction: column;
   height: 100vh;
   min-height: 100%;
+  font-family: "Inter", Arial, sans-serif;
+  text-rendering: optimizeLegibility;
 }
 .wrapper__section {
   padding: 0px clamp(50px, 1vw, 70px);

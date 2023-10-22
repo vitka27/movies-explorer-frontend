@@ -8,7 +8,6 @@
 }
 .input__label {
   color: #8b8b8b;
-  font-family: Inter;
   font-size: 10px;
   font-style: normal;
   font-weight: 400;
@@ -23,7 +22,6 @@
   background: transparent;
 
   color: #fff;
-  font-family: Inter;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
@@ -36,7 +34,6 @@
   padding-top: 6px;
   height: 12px;
   color: #ee3465;
-  font-family: Inter;
   font-size: 10px;
   font-style: normal;
   font-weight: 400;
