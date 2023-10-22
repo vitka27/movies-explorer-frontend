@@ -8,7 +8,7 @@ export default function AboutMe() {
         <h2 className="about-me__title">Студент</h2>
         <div className="about-me__info">
           <img src={meImage} alt="фото автора" className="about-me__info-image" />
-          <div className="aobout-me__info-block">
+          <div className="about-me__info-block">
             <h3 className="about-me__info-name">Виталий</h3>
             <p className="about-me__info-experience">
               Фронтенд-разработчик, 30 лет

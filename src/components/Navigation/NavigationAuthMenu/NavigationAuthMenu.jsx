@@ -1,8 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-// import imgUser from "";
-
 export default function NavigationAuthMenu({ isAuth }) {
   return isAuth ? (
     <Link to="/profile" className="navigation-auth-menu__profile-link">

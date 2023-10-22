@@ -6,7 +6,7 @@ export default function Navigation({ isAuth, isOpenBurgerMenu }) {
   return (
     <nav
       className={`navigation
-    ${!isAuth ? "navigation__block_justify_end" : ""}
+    ${!isAuth ? "navigation_justify_end" : ""}
     ${isOpenBurgerMenu ? "navigation__block_active" : ""}`}
     >
       {isAuth ? (

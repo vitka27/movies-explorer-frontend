@@ -3,7 +3,7 @@
   width: 100%;
   justify-content: space-between;
 }
-.navigation__block_justify_end {
+.navigation_justify_end {
   justify-content: flex-end;
 }
 @media screen and (max-width: 768px) {
