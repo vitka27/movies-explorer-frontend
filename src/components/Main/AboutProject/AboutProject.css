@@ -9,7 +9,6 @@
   border-bottom: 1px solid #dadada;
 
   color: #fff;
-
   font-size: 22px;
   font-style: normal;
   font-weight: 400;
@@ -40,7 +39,6 @@
 .about-project__content-text {
   margin: 0;
   color: #fff;
-
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
@@ -61,26 +59,29 @@
   margin: 0;
   color: #000;
   text-align: center;
-
   font-size: 14px;
   font-style: normal;
   font-weight: 400;
   line-height: normal;
 }
-/* что то забыл как работает  псевдо*/
 .about-project__graphick-title:nth-child(1) {
   background: #3ddc84;
 }
 .about-project__graphick-title:nth-child(2) {
   background-color: #303030;
+
+  color: #fff;
+  text-align: center;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 
 .about-project__graphick-text {
   margin: 0;
   color: #8b8b8b;
-
   text-align: center;
-
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
@@ -141,6 +142,5 @@
   }
   .about-project__graphick-text {
     font-size: 11px;
-
   }
 }
