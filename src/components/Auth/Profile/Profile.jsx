@@ -16,6 +16,7 @@ export default function Profile() {
                 // value={""}
                 placeholder="Виталий"
                 aria-label="Имя"
+                required
               />
             </label>
             <span className="profile__input-error"></span>
@@ -30,6 +31,7 @@ export default function Profile() {
                 // value={""}
                 placeholder="pochta@yandex.ru"
                 aria-label="E-mail"
+                required
               />
             </label>
             <span className="profile__input-error"></span>
