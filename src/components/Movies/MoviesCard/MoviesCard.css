@@ -37,21 +37,21 @@
 .movies-card__action:hover {
   opacity: 0.8;
 }
-.movies-card__like__active {
+.movies-card__action_like_active {
   background-image: url(../../../images/heart-active.svg);
   background-repeat: no-repeat;
   background-color: #313131;
   background-position: center;
   border-radius: 50%;
 }
-.movies-card__like__disactive {
+.movies-card__action_like_disactive {
   background-image: url(../../../images/heart-disable.svg);
   background-repeat: no-repeat;
   background-color: #313131;
   background-position: center;
   border-radius: 50%;
 }
-.movies-card__delete:hover {
+.movies-card__action_delete:hover {
   background-image: url(../../../images/delete.svg);
   background-repeat: no-repeat;
   background-color: #313131;

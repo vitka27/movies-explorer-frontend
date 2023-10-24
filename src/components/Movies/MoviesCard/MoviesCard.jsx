@@ -18,10 +18,10 @@ export default function MoviesCard({ movie }) {
         aria-label="Мне нравится"
         className={
           isSavedMoviesLocation
-            ? "movies-card__action movies-card__delete"
+            ? "movies-card__action movies-card__action_delete"
             : isLike
-            ? "movies-card__action movies-card__like__active"
-            : "movies-card__action movies-card__like__disactive"
+            ? "movies-card__action movies-card__action_like_active"
+            : "movies-card__action movies-card__action_like_disactive"
         }
         onClick={handleClick}
       ></button>
