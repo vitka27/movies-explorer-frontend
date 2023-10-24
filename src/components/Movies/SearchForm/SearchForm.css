@@ -30,6 +30,8 @@
 }
 .search-form__form-input:focus {
   outline: none;
+  border-bottom: 1px solid #4285f4;
+  margin-right: 20px;
 }
 .search-form__form::before {
   content: "";

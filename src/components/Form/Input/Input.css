@@ -29,6 +29,7 @@
 }
 .input__text:focus {
   outline: none;
+  border-bottom: 1px solid #4285F4;
 }
 .input__error {
   padding-top: 6px;

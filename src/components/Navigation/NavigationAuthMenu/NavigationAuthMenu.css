@@ -37,6 +37,9 @@
   border: none;
   color: inherit;
 }
+.navigation-auth-menu__link:hover {
+  opacity: 0.7;
+}
 .navigation-auth-menu__img {
   background-position: center;
   border-radius: 50%;
