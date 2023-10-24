@@ -14,7 +14,7 @@ export default function Profile() {
                 className="profile__input-text"
                 id="userName"
                 // value={""}
-                placeholder="Виталий"
+                placeholder="Виталий"
                 aria-label="Имя"
               />
             </label>

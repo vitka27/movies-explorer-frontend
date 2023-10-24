@@ -20,7 +20,7 @@ export default function Form({
             <Logo />
           </div>
           <h1 className="form__title">{title}</h1>
-          <form action="" className="form__form">
+          <form action="#" className="form__form">
             <div className="form__inputs">{children}</div>
             <div className="form__buttons">
               {useLocation().pathname === "/signup" ? (
@@ -34,7 +34,7 @@ export default function Form({
                 </>
               ) : (
                 <>
-                  <Button buttonName="Войти" />
+                  <Button buttonName="Войти" />
                   <ToAction
                     actionTitle="Ещё не зарегистрированы?"
                     nameButton="Регистрация"
