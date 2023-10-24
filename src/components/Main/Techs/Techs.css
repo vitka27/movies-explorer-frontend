@@ -91,6 +91,8 @@
     margin-top: 80px;
   }
   .techs__stack-item {
+    font-size: 12px;
+    letter-spacing: -0.48px;
     width: 84px;
     height: 57px;
   }
@@ -116,9 +118,5 @@
   }
   .techs__stack {
     margin: 50px 50px 0px;
-  }
-  .techs__stack-item {
-    width: 84px;
-    height: 57px;
   }
 }

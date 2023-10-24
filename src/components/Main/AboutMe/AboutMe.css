@@ -127,6 +127,9 @@
     max-width: 292px;
     max-height: 352px;
   }
+  .about-me__info-block {
+    padding: 0;
+  }
   .about-me__info-name {
     padding-top: 40px;
     font-size: 30px;
@@ -147,5 +150,11 @@
   }
   .about-me__info-link-github {
     margin-top: 40px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .about-me__info-image {
+    align-self: auto;
   }
 }
