@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Profile() {
   return (
-    <section className="wrapper__section wrapper__section_theme_dark profile">
+    <div className="wrapper__section wrapper__section_theme_dark profile">
       <form className="wrapper__section-container  profile__form" noValidate="" action="#">
         <h3 className="profile__title">Привет, Виталий!</h3>
         <fieldset className="profile__inputs">
@@ -48,6 +48,6 @@ export default function Profile() {
           </div>
         </fieldset>
       </form>
-    </section>
+    </div>
   );
 }

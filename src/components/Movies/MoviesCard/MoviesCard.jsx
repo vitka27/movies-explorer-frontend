@@ -10,9 +10,9 @@ export default function MoviesCard({ movie }) {
     setIsLike(!isLike);
   }
   return (
-    <figure className="movies-card">
+    <article className="movies-card">
       <img src={movie.img} alt={movie.title} className="movies-card__img" />
-      <figcaption className="movies-card__title">{movie.title}</figcaption>
+      <h2 className="movies-card__title">{movie.title}</h2>
       <button
         type="button"
         aria-label="Мне нравится"
@@ -25,7 +25,7 @@ export default function MoviesCard({ movie }) {
         }
         onClick={handleClick}
       ></button>
-      <span className="movies-card__time">{movie.time}</span>
-    </figure>
+      <p className="movies-card__time">{movie.time}</p>
+    </article>
   );
 }

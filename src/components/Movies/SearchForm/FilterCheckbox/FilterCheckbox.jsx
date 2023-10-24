@@ -7,7 +7,7 @@ export default function FilterCheckbox({ title }) {
   }
 
   return (
-    <section className="filter-checkbox">
+    <div className="filter-checkbox">
       <label className="filter-checkbox__block">
         <input
           className="filter-checkbox__block-input"
@@ -16,10 +16,9 @@ export default function FilterCheckbox({ title }) {
           onChange={handleChange}
           aria-label="чекбокс"
         />
-
-        <div className="filter-checkbox__block-slider"></div>
+        <span className="filter-checkbox__block-slider"></span>
       </label>
-      <p className="filter-checkbox__title">{title}</p>
-    </section>
+      <label className="filter-checkbox__title">{title}</label>
+    </div>
   );
 }

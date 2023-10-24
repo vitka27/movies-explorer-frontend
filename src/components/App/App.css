@@ -10,7 +10,7 @@
   text-rendering: optimizeLegibility;
 }
 .wrapper__section {
-  padding: 0px clamp(50px, 1vw, 70px);
+  padding: 0px clamp(50px, 6vw, 70px);
 }
 .wrapper__section-container {
   max-width: 1280px;
@@ -30,7 +30,7 @@
 }
 @media screen and (max-width: 768px) {
   .wrapper__section {
-    padding: 0px clamp(14px, 7vw, 40px);
+    padding: 0px clamp(14px, 5vw, 40px);
   }
 }
 @media screen and (max-width: 320px) {

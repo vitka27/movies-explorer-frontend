@@ -14,7 +14,7 @@ export default function Form({
 }) {
   return (
     <>
-      <section className="wrapper__section form">
+      <div className="wrapper__section form">
         <div className="wrapper__section-container form__wrap">
           <div className="form__header-logo">
             <Logo />
@@ -45,7 +45,7 @@ export default function Form({
             </div>
           </form>
         </div>
-      </section>
+      </div>
     </>
   );
 }
