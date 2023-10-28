@@ -1,6 +1,8 @@
 import React from "react";
 import { useState } from "react";
 import { useLocation } from "react-router-dom";
+import { BASE_URL_MOVIES } from "../../../utils/const";
+import timeConvert from "../../../utils/timeConvert";
 
 export default function MoviesCard({ movie }) {
   const isSavedMoviesLocation = "/saved-movies" === useLocation().pathname;
@@ -9,10 +11,15 @@ export default function MoviesCard({ movie }) {
   function handleClick() {
     setIsLike(!isLike);
   }
+
   return (
     <article className="movies-card">
-      <img src={movie.img} alt={movie.title} className="movies-card__img" />
-      <h2 className="movies-card__title">{movie.title}</h2>
+      <img
+        src={BASE_URL_MOVIES + movie.image.url}
+        alt={movie.nameRU}
+        className="movies-card__img"
+      />
+      <h2 className="movies-card__title">{movie.nameRU}</h2>
       <button
         type="button"
         aria-label="Мне нравится"
@@ -25,7 +32,7 @@ export default function MoviesCard({ movie }) {
         }
         onClick={handleClick}
       ></button>
-      <p className="movies-card__time">{movie.time}</p>
+      <p className="movies-card__time">{timeConvert(movie.duration)}</p>
     </article>
   );
 }

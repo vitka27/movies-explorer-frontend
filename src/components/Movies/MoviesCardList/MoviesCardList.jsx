@@ -7,8 +7,8 @@ export default function MoviesCardList({ movies }) {
   return (
     <div className="wrapper__section wrapper__section_theme_dark movies-card-list">
       <div className="wrapper__section-container movies-card-list__container">
-        {movies.map((movie, index) => (
-          <MoviesCard key={index} movie={movie} />
+        {movies.map((movie) => (
+          <MoviesCard key={movie.id} movie={movie} />
         ))}
       </div>
       {actPreloader ? <Preloader /> : ""}

@@ -116,3 +116,6 @@ export const SAVE_MOVIES = [
   },
 ];
 
+export const BASE_URL_MOVIES = "https://api.nomoreparties.co/";
+export const BASE_URL_MAIN = "http://localhost:3001";
+
