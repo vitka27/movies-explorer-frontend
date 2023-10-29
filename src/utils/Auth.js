@@ -42,9 +42,17 @@ export const authorize = ({ email, password }) => {
     .then((data) => {
       if (data.token) {
         localStorage.setItem("jwt", data.token);
-        console.log(data.token);
         return data;
       }
     })
     .catch((err) => console.log(err));
+};
+
+export const apiCheckToken = (localToken) => {
+  return fetch(`${BASE_URL_MAIN}/users/me`, {
+    method: "GET",
+    headers: { authorization: `Bearer ${localToken}` },
+  }).then((response) => {
+    return response.json();
+  })
 };

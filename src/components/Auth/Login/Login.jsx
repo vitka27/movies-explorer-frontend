@@ -2,14 +2,13 @@ import React from "react";
 import Form from "../../Form/Form";
 import Input from "../../Form/Input/Input";
 import useInputForm from "../../../hooks/useInputForm";
-import {authorize} from "../../../utils/Auth";
 
-export default function Login() {
+export default function Login({ hadleSubmitLogin }) {
   const { values, onChange } = useInputForm([]);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    authorize(values);
+    hadleSubmitLogin(values);
   };
 
   return (

@@ -1,6 +1,9 @@
-import React from "react";
+import {React, useContext} from "react";
+import { CurrentUserContext } from "../../../contexts/CurrentUserContext";
 
 export default function Profile() {
+  const userData = useContext(CurrentUserContext);
+
   return (
     <div className="wrapper__section wrapper__section_theme_dark profile">
       <form className="wrapper__section-container  profile__form" noValidate="" action="#">
@@ -13,8 +16,7 @@ export default function Profile() {
                 type="text"
                 className="profile__input-text"
                 id="userName"
-                // value={""}
-                placeholder="Виталий"
+                // value={userData.name || ""}
                 aria-label="Имя"
                 required
               />
@@ -28,8 +30,7 @@ export default function Profile() {
                 type="text"
                 className="profile__input-text"
                 id="userEmail"
-                // value={""}
-                placeholder="pochta@yandex.ru"
+                // value={userData.email || ""}
                 aria-label="E-mail"
                 required
               />
@@ -41,6 +42,10 @@ export default function Profile() {
               Редактировать
             </button>
             <button
+              onClick={() => {
+                localStorage.removeItem("token");
+                window.location.reload();
+              }}
               className="profile__button profile__button_type_exit"
               type="button"
               aria-label="Выйти из аккаунта"

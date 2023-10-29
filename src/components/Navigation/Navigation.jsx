@@ -2,20 +2,20 @@ import React from "react";
 import NavigationMenu from "./NavigationMenu/NavigationMenu";
 import NavigationAuthMenu from "./NavigationAuthMenu/NavigationAuthMenu";
 
-export default function Navigation({ isAuth, isOpenBurgerMenu }) {
+export default function Navigation({ isAuthorezed, isOpenBurgerMenu }) {
   return (
     <nav
       className={`navigation
-    ${!isAuth ? "navigation_justify_end" : ""}
+    ${!isAuthorezed ? "navigation_justify_end" : ""}
     ${isOpenBurgerMenu ? "navigation__block_active" : ""}`}
     >
-      {isAuth ? (
+      {isAuthorezed ? (
         <>
           <NavigationMenu />
-          <NavigationAuthMenu isAuth={isAuth} />
+          <NavigationAuthMenu isAuth={isAuthorezed} />
         </>
       ) : (
-        <NavigationAuthMenu isAuth={isAuth} />
+        <NavigationAuthMenu isAuth={isAuthorezed} />
       )}
     </nav>
   );
