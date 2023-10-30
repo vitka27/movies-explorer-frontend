@@ -26,6 +26,7 @@ function App() {
   const [isAuthorezed, setIsAuthorezed] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
   const [moviesList, setMoviesList] = useState([]);
+  const [moviesSavedList, setMoviesSavedList] = useState([]);
 
   //*login, register and logout
   function hadleSubmitLogin(data) {
@@ -57,7 +58,7 @@ function App() {
           }
         })
         .catch((error) => console.error(`Ошибка: ${error}`))
-      .finally(() => navigate("/"));
+        .finally(() => navigate("/"));
     }
   }
   // eslint-disable-next-line
@@ -66,9 +67,10 @@ function App() {
   //* init render card, user-prof
   useEffect(() => {
     Promise.all([apiMain.getUser(), getMovies(), apiMain.getMovies()])
-      .then(([userData, dataSaveMovies, dataMovies]) => {
+      .then(([userData, dataMovies, dataSaveMovies]) => {
         setCurrentUser(userData);
-        setMoviesList(dataSaveMovies);
+        setMoviesList(dataMovies);
+        setMoviesSavedList(dataSaveMovies);
         // setIsLoading(false);
       })
       .catch((error) => console.error(`Ошибка: ${error}`));
@@ -90,10 +92,15 @@ function App() {
               path="/movies"
               element={<Movies moviesList={moviesList} />}
             />
-            <Route path="/saved-movies" element={<SavedMovies />} />
+            <Route path="/saved-movies" element={<SavedMovies moviesSavedList={moviesSavedList} />} />
             <Route
               path="/profile"
-              element={<Profile onUpdateDataUser={updateDataUser} handleSignOut={handleLogout} />}
+              element={
+                <Profile
+                  onUpdateDataUser={updateDataUser}
+                  handleSignOut={handleLogout}
+                />
+              }
             />
             <Route path="*" element={<NotFound />} />
           </Route>
