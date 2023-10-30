@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 
 import { visabilityPathHeaderFooter } from "../../utils/const";
+import apiMain from "../../utils/MainApi";
+import getMovies from "../../utils/MoviesApi";
 
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import { authorize, apiCheckToken } from "../../utils/Auth";
@@ -19,17 +21,18 @@ import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 
 function App() {
   const navigate = useNavigate();
-  const localToken = localStorage.token;
+  const localStorageToken = localStorage.token;
 
   const [isAuthorezed, setIsAuthorezed] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
+  const [moviesList, setMoviesList] = useState([]);
 
-  //*login
+  //*login, register and logout
   function hadleSubmitLogin(data) {
     authorize(data)
       .then(({ token }) => {
         token && localStorage.setItem("token", token);
-        checkToken();
+        // checkToken();
         setIsAuthorezed(true);
       })
       .catch((error) => {
@@ -38,21 +41,42 @@ function App() {
         // setisMassagePopupOpen(true);
       });
   }
+  function handleLogout() {
+    localStorage.removeItem("token");
+    navigate("/signin");
+    setIsAuthorezed(false);
+  }
+
   //*checkToken
   function checkToken() {
-    if (localToken) {
-      apiCheckToken(localToken)
+    if (localStorageToken) {
+      apiCheckToken(localStorageToken)
         .then((response) => {
           if (response.email) {
             setIsAuthorezed(true);
           }
         })
         .catch((error) => console.error(`Ошибка: ${error}`))
-        .finally(() => navigate("/"));
+      .finally(() => navigate("/"));
     }
   }
   // eslint-disable-next-line
-  useEffect(checkToken, [localToken]);
+  useEffect(checkToken, [localStorageToken]);
+
+  //* init render card, user-prof
+  useEffect(() => {
+    Promise.all([apiMain.getUser(), getMovies(), apiMain.getMovies()])
+      .then(([userData, dataSaveMovies, dataMovies]) => {
+        setCurrentUser(userData);
+        setMoviesList(dataSaveMovies);
+        // setIsLoading(false);
+      })
+      .catch((error) => console.error(`Ошибка: ${error}`));
+  }, [localStorageToken]);
+
+  function updateDataUser(userData) {
+    apiMain.setUserData(userData);
+  }
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -62,9 +86,15 @@ function App() {
         )}
         <Routes>
           <Route element={<ProtectedRoute isAuthorezed={isAuthorezed} />}>
-            <Route path="/movies" element={<Movies />} />
+            <Route
+              path="/movies"
+              element={<Movies moviesList={moviesList} />}
+            />
             <Route path="/saved-movies" element={<SavedMovies />} />
-            <Route path="/profile" element={<Profile />} />
+            <Route
+              path="/profile"
+              element={<Profile onUpdateDataUser={updateDataUser} handleSignOut={handleLogout} />}
+            />
             <Route path="*" element={<NotFound />} />
           </Route>
 
@@ -77,7 +107,7 @@ function App() {
         </Routes>
         {visabilityPathHeaderFooter.includes(useLocation().pathname) && (
           <Footer />
-        )}{" "}
+        )}
       </div>
     </CurrentUserContext.Provider>
   );

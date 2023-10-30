@@ -1,19 +1,13 @@
 import React from "react";
 import MoviesCardList from "./MoviesCardList/MoviesCardList";
 import SearchForm from "./SearchForm/SearchForm";
-import getMovies from "../../utils/MoviesApi";
 
-export default function Movies() {
-  const [movies, setMovies] = React.useState([]);
-
-  getMovies().then((movies) => {
-    setMovies(movies);
-  });
+export default function Movies({moviesList}) {
 
   return (
     <main className="wrapper__main">
       <SearchForm />
-      <MoviesCardList movies={movies} />
+      <MoviesCardList movies={moviesList} />
     </main>
   );
 }

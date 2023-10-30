@@ -8,6 +8,9 @@ export default function getMovies(params) {
     },
   })
     .then((res) => res.json())
+    .then((data) => {
+      return data;
+    })
     .catch((err) => {
       console.log(err);
     });
