@@ -1,10 +1,20 @@
 import React from "react";
 import Form from "../../Form/Form";
 import Input from "../../Form/Input/Input";
-import useInputForm from "../../../hooks/useInputForm";
+import useValidation from "../../../hooks/useValidation";
 
 export default function Login({ hadleSubmitLogin }) {
-  const { values, onChange } = useInputForm([]);
+  const {
+    values,
+    errors,
+    isValidInputs,
+    isValidForm,
+    handleChange,
+    reset,
+    isEmpty,
+    onBlur,
+    isDirty,
+  } = useValidation();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -12,26 +22,38 @@ export default function Login({ hadleSubmitLogin }) {
   };
 
   return (
-    <Form title="Рады видеть!" handleSubmit={handleSubmit}>
+    <Form
+      title="Рады видеть!"
+      handleSubmit={handleSubmit}
+      isValidForm={isValidForm}
+    >
       <Input
+        isEmpty={isEmpty}
+        isDirty={isDirty}
+        error={errors.email}
         inputName="E-mail"
         required=""
-        onChange={onChange}
+        onChange={handleChange}
+        onBlur={onBlur}
         value={values.email || ""}
         name="email"
-        // placeholder="Email"
+        placeholder="Введите ваш Email"
         aria-label="строка ввода email"
         type="email"
         minLength={2}
         maxLength={30}
       />
       <Input
+        isEmpty={isEmpty}
+        isDirty={isDirty}
+        error={errors.password}
         inputName="Пороль"
         required=""
-        onChange={onChange}
+        onChange={handleChange}
+        onBlur={onBlur}
         value={values.password || ""}
         name="password"
-        // placeholder="Пороль"
+        placeholder="Введите ваш пороль"
         aria-label="строка ввода пороля"
         type="password"
         minLength={2}

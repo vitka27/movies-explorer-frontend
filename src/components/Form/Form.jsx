@@ -12,10 +12,9 @@ export default function Form({
   nameButton,
   patch,
   handleSubmit,
+  isValidForm,
    ...props
 }) {
-
-
 
   return (
     <>
@@ -39,7 +38,7 @@ export default function Form({
                 </>
               ) : (
                 <>
-                  <Button buttonName="Войти" />
+                  <Button buttonName="Войти" isValidForm={isValidForm}/>
                   <ToAction
                     actionTitle="Ещё не зарегистрированы?"
                     nameButton="Регистрация"
