@@ -28,36 +28,36 @@ export default function Login({ hadleSubmitLogin }) {
       isValidForm={isValidForm}
     >
       <Input
-        isEmpty={isEmpty}
-        isDirty={isDirty}
-        error={errors.email}
         inputName="E-mail"
-        required=""
+        name="email"
+        type="email"
+        value={values.email || ""}
+        error={errors.email}
         onChange={handleChange}
         onBlur={onBlur}
-        value={values.email || ""}
-        name="email"
+        isEmpty={isEmpty}
+        isDirty={isDirty}
+        required=""
+        maxLength={30}
+        minLength={2}
         placeholder="Введите ваш Email"
         aria-label="строка ввода email"
-        type="email"
-        minLength={2}
-        maxLength={30}
       />
       <Input
-        isEmpty={isEmpty}
-        isDirty={isDirty}
-        error={errors.password}
         inputName="Пороль"
-        required=""
+        name="password"
+        type="password"
+        value={values.password || ""}
+        error={errors.password}
         onChange={handleChange}
         onBlur={onBlur}
-        value={values.password || ""}
-        name="password"
-        placeholder="Введите ваш пороль"
-        aria-label="строка ввода пороля"
-        type="password"
+        isEmpty={isEmpty}
+        isDirty={isDirty}
+        required=""
         minLength={2}
         maxLength={30}
+        placeholder="Введите ваш пороль"
+        aria-label="строка ввода пороля"
       />
     </Form>
   );

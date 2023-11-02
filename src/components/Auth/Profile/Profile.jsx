@@ -1,8 +1,10 @@
 import { React, useContext, useState } from "react";
 import { CurrentUserContext } from "../../../contexts/CurrentUserContext";
+import useValidation from "../../../hooks/useValidation";
 
 export default function Profile({ onUpdateDataUser, handleSignOut }) {
   const userData = useContext(CurrentUserContext);
+  console.log(userData);
 
   const [name, setName] = useState(userData.name);
   const [email, setEmail] = useState(userData.email);
