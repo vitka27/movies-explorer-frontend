@@ -38,7 +38,10 @@
 
 @import url('./components/Movies/SearchForm/FilterCheckbox/FilterCheckbox.css');
 
-
 @import url('./components/Navigation/Navigation.css');
 @import url('./components/Navigation/NavigationAuthMenu/NavigationAuthMenu.css');
 @import url('./components/Navigation/NavigationMenu/NavigationMenu.css');
+
+@import url('./components/Preloader/Preloader.css');
+
+
