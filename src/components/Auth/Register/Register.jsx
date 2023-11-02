@@ -11,7 +11,6 @@ export default function Register() {
     isValidInputs,
     isValidForm,
     handleChange,
-    reset,
     isEmpty,
     onBlur,
     isDirty,
@@ -24,7 +23,7 @@ export default function Register() {
     });
   };
   return (
-    <Form title="Добро пожаловать!" handleSubmit={handleSubmit}>
+    <Form title="Добро пожаловать!" isValidForm={isValidForm} handleSubmit={handleSubmit}>
       <Input
         inputName="Имя"
         name="name"
@@ -35,6 +34,7 @@ export default function Register() {
         onBlur={onBlur}
         isEmpty={isEmpty}
         isDirty={isDirty}
+        isValidInputs={isValidInputs}
         required=""
         minLength={2}
         maxLength={30}
@@ -51,6 +51,7 @@ export default function Register() {
         onBlur={onBlur}
         isEmpty={isEmpty}
         isDirty={isDirty}
+        isValidInputs={isValidInputs}
         required=""
         minLength={2}
         maxLength={30}
@@ -67,6 +68,7 @@ export default function Register() {
         onBlur={onBlur}
         isEmpty={isEmpty}
         isDirty={isDirty}
+        isValidInputs={isValidInputs}
         required=""
         minLength={2}
         maxLength={30}

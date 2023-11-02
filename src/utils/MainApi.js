@@ -28,7 +28,7 @@ class Api {
         duration: data.duration,
         year: data.year,
         description: data.description,
-        image: this._moviesImageUrl + data.image.formats.small.url,
+        image: this._moviesImageUrl + data.image.formats.thumbnail.url,
         trailerLink: data.trailerLink,
         thumbnail: this._moviesImageUrl + data.image.formats.thumbnail.url, //тут должно быть ссылка на картинку
         movieId: data.id, // id

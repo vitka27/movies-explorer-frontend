@@ -1,9 +1,9 @@
-import { useCallback, useState } from "react";
+import { useState } from "react";
 
-function useValidation(initial = {}) {
-  const [values, setValues] = useState(initial);
-  const [errors, setErrors] = useState(initial);
-  const [isValidInputs, setIsValidInputs] = useState();
+function useValidation() {
+  const [values, setValues] = useState({});
+  const [errors, setErrors] = useState({});
+  const [isValidInputs, setIsValidInputs] = useState({});
   const [isValidForm, setIsValidForm] = useState(false);
   const [isEmpty, setIsEmpty] = useState(true);
   const [isDirty, setIsDirty] = useState(false);
@@ -19,12 +19,12 @@ function useValidation(initial = {}) {
     setIsDirty(true);
   };
 
-  const reset = useCallback(() => {
-    setIsValidForm(false);
-    setValues(initial);
-    setIsValidInputs(initial);
-    setErrors(initial);
-  }, [initial]);
+  // const reset = useCallback(() => {
+  //   setIsValidForm(false);
+  //   setValues({});
+  //   setIsValidInputs({});
+  //   setErrors({});
+  // }, [{}]);
 
   return {
     values,
@@ -32,7 +32,7 @@ function useValidation(initial = {}) {
     isValidInputs,
     isValidForm,
     handleChange,
-    reset,
+    // reset,
     onBlur,
     isEmpty,
     isDirty,

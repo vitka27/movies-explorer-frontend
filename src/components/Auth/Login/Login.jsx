@@ -10,7 +10,6 @@ export default function Login({ hadleSubmitLogin }) {
     isValidInputs,
     isValidForm,
     handleChange,
-    reset,
     isEmpty,
     onBlur,
     isDirty,
@@ -37,6 +36,7 @@ export default function Login({ hadleSubmitLogin }) {
         onBlur={onBlur}
         isEmpty={isEmpty}
         isDirty={isDirty}
+        isValidInputs={isValidInputs}
         required=""
         maxLength={30}
         minLength={2}
@@ -53,6 +53,7 @@ export default function Login({ hadleSubmitLogin }) {
         onBlur={onBlur}
         isEmpty={isEmpty}
         isDirty={isDirty}
+        isValidInputs={isValidInputs}
         required=""
         minLength={2}
         maxLength={30}

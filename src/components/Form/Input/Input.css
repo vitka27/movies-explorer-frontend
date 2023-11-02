@@ -27,13 +27,16 @@
   font-weight: 500;
   line-height: normal;
 }
+.input__text_red {
+  color: #ee3465;
+}
 .input__text:focus {
   outline: none;
   border-bottom: 1px solid #4285F4;
 }
 .input__error {
   padding-top: 6px;
-  min-height: 12px;
+  min-height: 24px;
   color: #ee3465;
   font-size: 10px;
   font-style: normal;

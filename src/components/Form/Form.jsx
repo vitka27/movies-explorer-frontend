@@ -15,7 +15,6 @@ export default function Form({
   isValidForm,
    ...props
 }) {
-
   return (
     <>
       <div className="wrapper__section form">
@@ -29,7 +28,7 @@ export default function Form({
             <div className="form__buttons">
               {useLocation().pathname === "/signup" ? (
                 <>
-                  <Button buttonName="Зарегистрироваться" />
+                  <Button buttonName="Зарегистрироваться" isValidForm={isValidForm} />
                   <ToAction
                     actionTitle="Уже зарегистрированы?"
                     nameButton="Войти"
