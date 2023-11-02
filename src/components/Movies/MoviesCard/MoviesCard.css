@@ -4,6 +4,7 @@
   align-items: end;
   justify-content: center;
   grid-template-columns: minmax(auto, 339px) 44px;
+  grid-auto-rows: minmax(151px, 190px) auto auto;
   grid-template-areas:
     "image image"
     "title action"
@@ -11,6 +12,7 @@
 }
 .movies-card__img {
   grid-area: image;
+  object-fit: cover;
   width: 100%;
   height: 100%;
 }
