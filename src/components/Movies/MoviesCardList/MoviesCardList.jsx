@@ -4,7 +4,6 @@ import Preloader from "../Preloader/Preloader";
 import MoviesCard from "../MoviesCard/MoviesCard";
 
 export default function MoviesCardList({ movies }) {
-  console.log(movies);
   const isSavedMoviesLocation = "/saved-movies" === useLocation().pathname;
 
   const actPreloader = movies.length >= 16;

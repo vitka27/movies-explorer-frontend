@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 
-export default function FilterCheckbox({ title }) {
+export default function FilterCheckbox({ title, setIsShotMovie }) {
   const [isChecked, setIsChecked] = useState(false);
   function handleChange() {
     setIsChecked(!isChecked);
+    setIsShotMovie(!isChecked);
   }
 
   return (

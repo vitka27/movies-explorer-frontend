@@ -3,7 +3,6 @@ import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 
 import { visabilityPathHeaderFooter } from "../../utils/const";
 import apiMain from "../../utils/MainApi";
-import getMovies from "../../utils/MoviesApi";
 import { authorize, apiCheckToken } from "../../utils/Auth";
 
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
@@ -28,7 +27,6 @@ function App() {
 
   const [isAuthorezed, setIsAuthorezed] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
-  const [moviesList, setMoviesList] = useState([]);
   const [moviesSavedList, setMoviesSavedList] = useState([]);
   const [isLoad, setIsLoad] = useState(true);
 
@@ -70,10 +68,9 @@ function App() {
 
   //* init render card, user-prof
   useEffect(() => {
-    Promise.all([apiMain.getUser(), getMovies(), apiMain.getMovies()])
-      .then(([userData, dataMovies, dataSaveMovies]) => {
+    Promise.all([apiMain.getUser(), apiMain.getMovies()])
+      .then(([userData, dataSaveMovies]) => {
         setCurrentUser(userData);
-        setMoviesList(dataMovies);
         setMoviesSavedList(dataSaveMovies);
         setIsAuthorezed(true);
         setIsLoad(false);
@@ -97,7 +94,7 @@ function App() {
           <Route element={<ProtectedRoute isAuthorezed={isAuthorezed} />}>
             <Route
               path="/movies"
-              element={<Movies moviesList={moviesList} />}
+              element={<Movies />}
             />
             <Route
               path="/saved-movies"
