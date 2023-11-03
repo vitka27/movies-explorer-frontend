@@ -1,34 +1,27 @@
-import React, { useState } from "react";
+import React, { useMemo } from "react";
 import MoviesCardList from "./MoviesCardList/MoviesCardList";
 import SearchForm from "./SearchForm/SearchForm";
+import useSearch from "../../hooks/useSearch";
 import getMovies from "../../utils/MoviesApi";
 
 export default function Movies() {
-  const [moviesList, setMoviesList] = useState([]);
-  const [searchMovie, setSearchMovie] = useState("");
-  const [isShotMovie, setIsShotMovie] = useState(false);
+  const { filterMovies, moviesList, setSearchMovie, setIsShotMovie } =
+    useSearch();
 
   const onChengeSearch = (event) => setSearchMovie(event.target.value);
   const onSubmitSearch = (event) => {
-    console.log('1');
     event.preventDefault();
-    filterMovies();
+    getMoviesData();
   };
 
-  const filterShotMovies = (movies) =>
-    movies.filter((movie) => movie.duration <= 40);
-
-  const filterMovies = () => {
+  const getMoviesData = () => {
     getMovies()
-      .then((movies) => {
-        const resultMovies = movies.filter((movie) =>
-          movie.nameRU.toLowerCase().includes(searchMovie.toLowerCase())
-        );
-        return isShotMovie
-          ? setMoviesList(filterShotMovies(resultMovies))
-          : setMoviesList(resultMovies);
+      .then((data) => {
+        filterMovies(data);
       })
-      .catch((error) => console.error(`Ошибка: ${error}`));
+      .catch((err) => {
+        console.log(err);
+      });
   };
 
   return (
