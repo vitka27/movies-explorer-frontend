@@ -23,12 +23,14 @@ import Preloader from "../Movies/Preloader/Preloader";
 
 function App() {
   const navigate = useNavigate();
+  const local = useLocation().pathname;
   const localStorageToken = localStorage.token;
 
   const [isAuthorezed, setIsAuthorezed] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
   const [moviesList, setMoviesList] = useState([]);
   const [moviesSavedList, setMoviesSavedList] = useState([]);
+  const [isLoad, setIsLoad] = useState(true);
 
   //*login, register and logout
   function hadleSubmitLogin(data) {
@@ -57,10 +59,10 @@ function App() {
         .then((response) => {
           if (response.email) {
             setIsAuthorezed(true);
+            setIsLoad(false);
           }
         })
-        .catch((error) => console.error(`Ошибка: ${error}`))
-        .finally(() => navigate("/"));
+        .catch((error) => console.error(`Ошибка: ${error}`));
     }
   }
   // eslint-disable-next-line
@@ -73,7 +75,8 @@ function App() {
         setCurrentUser(userData);
         setMoviesList(dataMovies);
         setMoviesSavedList(dataSaveMovies);
-        // setIsLoading(false);
+        setIsAuthorezed(true);
+        setIsLoad(false);
       })
       .catch((error) => console.error(`Ошибка: ${error}`));
   }, [localStorageToken]);
@@ -82,11 +85,12 @@ function App() {
     apiMain.setUserData(userData);
   }
 
-  return (
-    
+  return isLoad ? (
+    <Preloader />
+  ) : (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="wrapper">
-        {visabilityPathHeaderFooter.includes(useLocation().pathname) && (
+        {visabilityPathHeaderFooter.includes(local) && (
           <Header isAuthorezed={isAuthorezed} />
         )}
         <Routes>
@@ -95,7 +99,10 @@ function App() {
               path="/movies"
               element={<Movies moviesList={moviesList} />}
             />
-            <Route path="/saved-movies" element={<SavedMovies moviesSavedList={moviesSavedList} />} />
+            <Route
+              path="/saved-movies"
+              element={<SavedMovies moviesSavedList={moviesSavedList} />}
+            />
             <Route
               path="/profile"
               element={
@@ -115,9 +122,7 @@ function App() {
           />
           <Route path="/signup" element={<Register />} />
         </Routes>
-        {visabilityPathHeaderFooter.includes(useLocation().pathname) && (
-          <Footer />
-        )}
+        {visabilityPathHeaderFooter.includes(local) && <Footer />}
       </div>
     </CurrentUserContext.Provider>
   );
