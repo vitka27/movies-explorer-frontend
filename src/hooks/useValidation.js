@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 
 function useValidation() {
   const [values, setValues] = useState({});
@@ -19,12 +19,13 @@ function useValidation() {
     setIsDirty(true);
   };
 
-  // const reset = useCallback(() => {
-  //   setIsValidForm(false);
-  //   setValues({});
-  //   setIsValidInputs({});
-  //   setErrors({});
-  // }, [{}]);
+  // !!!!!!!
+  const reset = useCallback((data = {}) => {
+    setIsValidForm(false);
+    setValues(data);
+    setIsValidInputs({});
+    setErrors({});
+  }, []);
 
   return {
     values,
@@ -32,7 +33,7 @@ function useValidation() {
     isValidInputs,
     isValidForm,
     handleChange,
-    // reset,
+    reset,
     onBlur,
     isEmpty,
     isDirty,

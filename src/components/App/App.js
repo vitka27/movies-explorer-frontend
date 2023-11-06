@@ -37,6 +37,7 @@ function App() {
         token && localStorage.setItem("token", token);
         // checkToken();
         setIsAuthorezed(true);
+        navigate("/movies", { replace: true });
       })
       .catch((error) => {
         console.error(`Ошибка: ${error}`);
@@ -75,7 +76,10 @@ function App() {
         setIsAuthorezed(true);
         setIsLoad(false);
       })
-      .catch((error) => console.error(`Ошибка: ${error}`));
+      .catch((error) => {
+        console.error(`Ошибка: ${error}`);
+        setIsLoad(false);
+      });
   }, [localStorageToken]);
 
   function updateDataUser(userData) {
