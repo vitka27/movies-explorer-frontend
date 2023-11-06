@@ -13,7 +13,7 @@ export default function useSearch() {
       movie.nameRU.toLowerCase().includes(searchMovie.toLowerCase())
     );
     if (!searchMovie) {
-      setMoviesList([])
+      setMoviesList([]);
     } else {
       isShotMovie
         ? setMoviesList(filterShotMovies(resultMovies))
@@ -21,5 +21,12 @@ export default function useSearch() {
     }
   };
 
-  return { filterMovies, moviesList, setSearchMovie, setIsShotMovie };
+  return {
+    filterMovies,
+    moviesList,
+    setSearchMovie,
+    searchMovie,
+    setIsShotMovie,
+    isShotMovie,
+  };
 }

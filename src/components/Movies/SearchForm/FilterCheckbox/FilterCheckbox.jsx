@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 export default function FilterCheckbox({ title, setIsShotMovie }) {
   const [isChecked, setIsChecked] = useState(false);

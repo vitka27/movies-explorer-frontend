@@ -2,36 +2,33 @@ import React from "react";
 import MoviesCardList from "./MoviesCardList/MoviesCardList";
 import SearchForm from "./SearchForm/SearchForm";
 import useSearch from "../../hooks/useSearch";
-import getMovies from "../../utils/MoviesApi";
 
-export default function Movies() {
-  const { filterMovies, moviesList, setSearchMovie, setIsShotMovie } =
-    useSearch();
+export default function Movies({ dataAllMovies, handleAddMovie }) {
+  const {
+    filterMovies,
+    moviesList,
+    setSearchMovie,
+    searchMovie,
+    setIsShotMovie,
+    isShotMovie,
+  } = useSearch();
 
-  const onChengeSearch = (event) => setSearchMovie(event.target.value);
   const onSubmitSearch = (event) => {
     event.preventDefault();
-    getMoviesData();
-  };
-
-  const getMoviesData = () => {
-    getMovies()
-      .then((data) => {
-        filterMovies(data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    filterMovies(dataAllMovies);
+    localStorage.setItem("searchMovie", searchMovie);
+    localStorage.setItem("isShotMovie", isShotMovie);
+    localStorage.setItem("movies", JSON.stringify(dataAllMovies));
   };
 
   return (
     <main className="wrapper__main">
       <SearchForm
-        onChengeSearch={onChengeSearch}
+        setSearchMovie={setSearchMovie}
         onSubmitSearch={onSubmitSearch}
         setIsShotMovie={setIsShotMovie}
       />
-      <MoviesCardList movies={moviesList} />
+      <MoviesCardList movies={moviesList} handleAddMovie={handleAddMovie} />
     </main>
   );
 }

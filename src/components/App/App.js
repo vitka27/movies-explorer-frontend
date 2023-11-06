@@ -3,6 +3,7 @@ import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 
 import { visabilityPathHeaderFooter } from "../../utils/const";
 import apiMain from "../../utils/MainApi";
+import getMovies from "../../utils/MoviesApi";
 import { authorize, apiCheckToken } from "../../utils/Auth";
 
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
@@ -28,7 +29,28 @@ function App() {
   const [isAuthorezed, setIsAuthorezed] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
   const [moviesSavedList, setMoviesSavedList] = useState([]);
+  const [dataAllMovies, setDataAllMovies] = useState([]);
   const [isLoad, setIsLoad] = useState(true);
+
+  //* init render card, user-prof
+  useEffect(() => {
+    Promise.all([apiMain.getUser(), apiMain.getMovies(), getMovies()])
+      .then(([userData, dataSaveMovies, dataAllMovies]) => {
+        setCurrentUser(userData);
+        setMoviesSavedList(dataSaveMovies);
+        setDataAllMovies(dataAllMovies);
+        setIsAuthorezed(true);
+        setIsLoad(false);
+      })
+      .catch((error) => {
+        console.error(`Ошибка: ${error}`);
+        setIsLoad(false);
+      });
+  }, [localStorageToken]);
+
+  function updateDataUser(userData) {
+    apiMain.setUserData(userData);
+  }
 
   //*login, register and logout
   function hadleSubmitLogin(data) {
@@ -67,24 +89,25 @@ function App() {
   // eslint-disable-next-line
   useEffect(checkToken, [localStorageToken]);
 
-  //* init render card, user-prof
-  useEffect(() => {
-    Promise.all([apiMain.getUser(), apiMain.getMovies()])
-      .then(([userData, dataSaveMovies]) => {
-        setCurrentUser(userData);
-        setMoviesSavedList(dataSaveMovies);
-        setIsAuthorezed(true);
-        setIsLoad(false);
-      })
-      .catch((error) => {
-        console.error(`Ошибка: ${error}`);
-        setIsLoad(false);
-      });
-  }, [localStorageToken]);
+function handleDeleteMovie(movie) {
+  apiMain
+    .delMovie(movie._id)
+    .then(() => {
+      setMoviesSavedList(moviesSavedList.filter((item) => item._id !== movie._id));
+    })
+    .catch((error) => console.error(`Ошибка: ${error}`));
+}
 
-  function updateDataUser(userData) {
-    apiMain.setUserData(userData);
-  }
+function handleAddMovie(movie) {
+  apiMain
+    .addMovie(movie)
+    .then((newMovie) => {
+      setMoviesSavedList([...moviesSavedList, newMovie]);
+    })
+    .catch((error) => console.error(`Ошибка: ${error}`));
+}
+
+
 
   return isLoad ? (
     <Preloader />
@@ -98,11 +121,11 @@ function App() {
           <Route element={<ProtectedRoute isAuthorezed={isAuthorezed} />}>
             <Route
               path="/movies"
-              element={<Movies />}
+              element={<Movies dataAllMovies={dataAllMovies} handleAddMovie={handleAddMovie} />}
             />
             <Route
               path="/saved-movies"
-              element={<SavedMovies moviesSavedList={moviesSavedList} />}
+              element={<SavedMovies handleDeleteMovie={handleDeleteMovie} moviesSavedList={moviesSavedList} />}
             />
             <Route
               path="/profile"

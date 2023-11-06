@@ -3,12 +3,10 @@ import SearchForm from "../Movies/SearchForm/SearchForm";
 import MoviesCardList from "../Movies/MoviesCardList/MoviesCardList";
 import useSearch from "../../hooks/useSearch";
 
-export default function SavedMovies({ moviesSavedList }) {
+export default function SavedMovies({ moviesSavedList, handleDeleteMovie }) {
   const { filterMovies, moviesList, setSearchMovie, setIsShotMovie } =
     useSearch();
   const [firstSearch, setFirstSearch] = useState(true);
-
-  const onChengeSearch = (event) => setSearchMovie(event.target.value);
 
   const onSubmitSearch = (event) => {
     setFirstSearch(!firstSearch);
@@ -23,11 +21,11 @@ export default function SavedMovies({ moviesSavedList }) {
   return (
     <main className="wrapper__main">
       <SearchForm
-        onChengeSearch={onChengeSearch}
+        setSearchMovie={setSearchMovie}
         onSubmitSearch={onSubmitSearch}
         setIsShotMovie={setIsShotMovie}
       />
-      <MoviesCardList movies={firstSearch ? moviesSavedList : moviesList} />
+      <MoviesCardList movies={firstSearch ? moviesSavedList : moviesList} handleDeleteMovie={handleDeleteMovie} />
     </main>
   );
 }
