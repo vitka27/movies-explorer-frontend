@@ -48,7 +48,7 @@ export default function Profile({ onUpdateDataUser, handleSignOut }) {
         className="wrapper__section-container  profile__form"
         onSubmit={handleSubmit}
       >
-        <h3 className="profile__title">Привет, Виталий!</h3>
+        <h3 className="profile__title">{`Привет, ${values.name}!`}</h3>
         <fieldset className="profile__inputs">
           <div className="profile__input">
             <label

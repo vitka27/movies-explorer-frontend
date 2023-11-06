@@ -18,7 +18,7 @@ import Login from "../Auth/Login/Login";
 import Register from "../Auth/Register/Register";
 import Profile from "../Auth/Profile/Profile";
 import NotFound from "../NotFound/NotFound";
-import Preloader from "../Movies/Preloader/Preloader";
+import Preloader from "../Preloader/Preloader";
 
 function App() {
   const navigate = useNavigate();
@@ -46,7 +46,7 @@ function App() {
       });
   }
   function handleLogout() {
-    localStorage.removeItem("token");
+    localStorage.clear();
     navigate("/signin");
     setIsAuthorezed(false);
   }

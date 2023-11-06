@@ -1,12 +1,12 @@
-.preloader {
+.more {
 }
-.preloader__container {
+.more__container {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 53px 0px 100px;
 }
-.preloader__title {
+.more__title {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -25,6 +25,6 @@
   font-weight: 500;
   line-height: normal;
 }
-.preloader__title:hover {
+.more__title:hover {
   opacity: 0.8;
 }
