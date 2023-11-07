@@ -23,7 +23,7 @@ import Preloader from "../Preloader/Preloader";
 
 function App() {
   const navigate = useNavigate();
-  const local = useLocation().pathname;
+  const location = useLocation().pathname;
   const localStorageToken = localStorage.token;
 
   const [isAuthorezed, setIsAuthorezed] = useState(false);
@@ -114,7 +114,7 @@ function handleAddMovie(movie) {
   ) : (
     <CurrentUserContext.Provider value={currentUser}>
       <div className="wrapper">
-        {visabilityPathHeaderFooter.includes(local) && (
+        {visabilityPathHeaderFooter.includes(location) && (
           <Header isAuthorezed={isAuthorezed} />
         )}
         <Routes>
@@ -146,7 +146,7 @@ function handleAddMovie(movie) {
           />
           <Route path="/signup" element={<Register />} />
         </Routes>
-        {visabilityPathHeaderFooter.includes(local) && <Footer />}
+        {visabilityPathHeaderFooter.includes(location) && <Footer />}
       </div>
     </CurrentUserContext.Provider>
   );

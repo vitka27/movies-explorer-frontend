@@ -1,11 +1,23 @@
 import React, { useEffect, useState } from "react";
 
-export default function FilterCheckbox({ title, setIsShotMovie }) {
+export default function FilterCheckbox({
+  title,
+  setIsShotMovie,
+  isLocationMovies,
+}) {
   const [isChecked, setIsChecked] = useState(false);
+
   function handleChange() {
-    setIsChecked(!isChecked);
-    setIsShotMovie(!isChecked);
+    const newIsChecked = !isChecked;
+    setIsChecked(newIsChecked);
+    setIsShotMovie(newIsChecked);
+    isLocationMovies && localStorage.setItem("isShotMovie", newIsChecked);
   }
+
+  useEffect(() => {
+    isLocationMovies &&
+      setIsChecked(localStorage.isShotMovie === "true" ? true : false);
+  }, [isLocationMovies, setIsShotMovie]);
 
   return (
     <div className="filter-checkbox">
@@ -13,7 +25,7 @@ export default function FilterCheckbox({ title, setIsShotMovie }) {
         <input
           className="filter-checkbox__block-input"
           type="checkbox"
-          value={isChecked}
+          checked={isChecked}
           onChange={handleChange}
           aria-label="чекбокс"
         />

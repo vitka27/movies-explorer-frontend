@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 
 export default function useSearch() {
   const [moviesList, setMoviesList] = useState([]);
@@ -8,7 +8,7 @@ export default function useSearch() {
   const filterShotMovies = (resultMovies) =>
     resultMovies.filter((movie) => movie.duration <= 40);
 
-  const filterMovies = (movies) => {
+  const filterMovies = useCallback((movies) => {
     const resultMovies = movies.filter((movie) =>
       movie.nameRU.toLowerCase().includes(searchMovie.toLowerCase())
     );
@@ -19,7 +19,11 @@ export default function useSearch() {
         ? setMoviesList(filterShotMovies(resultMovies))
         : setMoviesList(resultMovies);
     }
-  };
+  }, [isShotMovie, searchMovie]);
+
+  const resetMovies = useCallback((data = []) => {
+    setMoviesList(data);
+  }, []);
 
   return {
     filterMovies,
@@ -28,5 +32,6 @@ export default function useSearch() {
     searchMovie,
     setIsShotMovie,
     isShotMovie,
+    resetMovies
   };
 }
