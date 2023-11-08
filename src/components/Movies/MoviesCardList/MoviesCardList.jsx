@@ -6,8 +6,8 @@ import { SCREEN_SETTINGS } from "../../../utils/const";
 
 export default function MoviesCardList({
   movies,
-  handleDeleteMovie,
-  handleAddMovie,
+  deletedMovie,
+  addMovieUserList,
 }) {
   const isSavedMoviesLocation = "/saved-movies" === useLocation().pathname;
   const [endCountCardList, setEndCountCardList] = useState("");
@@ -17,7 +17,7 @@ export default function MoviesCardList({
   function handleClickMore() {
     setEndCountCardList(endCountCardList + countMovies().stepDisplayMovie);
   }
-  
+
   function countMovies() {
     const counter = {
       initialQuantityMovies: SCREEN_SETTINGS.default.cards.initialQuantityMovies,
@@ -38,23 +38,22 @@ export default function MoviesCardList({
     return counter;
   }
 
-  function showResize() {
-    if (window.innerWidth >= SCREEN_SETTINGS.default.width) {
-      setEndCountCardList(countMovies().initialQuantityMovies);
-    }
-    if (window.innerWidth < SCREEN_SETTINGS.desktop.width) {
-      setEndCountCardList(countMovies().initialQuantityMovies);
-    }
-    if (window.innerWidth < SCREEN_SETTINGS.tablet.width) {
-      setEndCountCardList(countMovies().initialQuantityMovies);
-    }
-    if (window.innerWidth < SCREEN_SETTINGS.mobile.width) {
-      setEndCountCardList(countMovies().initialQuantityMovies);
-    }
-  }
-
   useEffect(() => {
     if (!isSavedMoviesLocation) {
+      function showResize() {
+        if (window.innerWidth >= SCREEN_SETTINGS.default.width) {
+          setEndCountCardList(countMovies().initialQuantityMovies);
+        }
+        if (window.innerWidth < SCREEN_SETTINGS.desktop.width) {
+          setEndCountCardList(countMovies().initialQuantityMovies);
+        }
+        if (window.innerWidth < SCREEN_SETTINGS.tablet.width) {
+          setEndCountCardList(countMovies().initialQuantityMovies);
+        }
+        if (window.innerWidth < SCREEN_SETTINGS.mobile.width) {
+          setEndCountCardList(countMovies().initialQuantityMovies);
+        }
+      }
       setEndCountCardList(countMovies().initialQuantityMovies);
       window.addEventListener("resize", showResize, {
         capture: true,
@@ -71,8 +70,8 @@ export default function MoviesCardList({
           <MoviesCard
             key={isSavedMoviesLocation ? movie._id : movie.id}
             movie={movie}
-            handleDeleteMovie={handleDeleteMovie}
-            handleAddMovie={handleAddMovie}
+            deletedMovie={deletedMovie}
+            addMovieUserList={addMovieUserList}
           />
         ))}
       </div>

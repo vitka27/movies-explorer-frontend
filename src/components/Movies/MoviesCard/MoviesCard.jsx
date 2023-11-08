@@ -4,13 +4,13 @@ import { useLocation } from "react-router-dom";
 import { BASE_URL_MOVIES } from "../../../utils/const";
 import timeConvert from "../../../utils/timeConvert";
 
-export default function MoviesCard({ movie, handleDeleteMovie, handleAddMovie  }) {
+export default function MoviesCard({ movie, deletedMovie, addMovieUserList  }) {
 
   const isSavedMoviesLocation = "/saved-movies" === useLocation().pathname;
   const [isLike, setIsLike] = useState(false);
 
   function handleClick(event) {
-    isSavedMoviesLocation ? handleDeleteMovie(movie) : handleAddMovie(movie);
+    isSavedMoviesLocation ? deletedMovie(movie) : addMovieUserList(movie);
     setIsLike(!isLike);
   }
 

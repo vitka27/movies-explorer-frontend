@@ -3,7 +3,7 @@ import Form from "../../Form/Form";
 import Input from "../../Form/Input/Input";
 import useValidation from "../../../hooks/useValidation";
 
-export default function Login({ hadleSubmitLogin }) {
+export default function Login({ loginUser }) {
   const {
     values,
     errors,
@@ -17,7 +17,7 @@ export default function Login({ hadleSubmitLogin }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    hadleSubmitLogin(values);
+    loginUser(values);
   };
 
   return (

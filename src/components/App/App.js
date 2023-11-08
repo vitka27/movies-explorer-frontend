@@ -4,7 +4,7 @@ import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import { visabilityPathHeaderFooter } from "../../utils/const";
 import apiMain from "../../utils/MainApi";
 import getMovies from "../../utils/MoviesApi";
-import { authorize, apiCheckToken } from "../../utils/Auth";
+import { register, authorize, apiCheckToken } from "../../utils/Auth";
 
 import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 
@@ -30,9 +30,9 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [moviesSavedList, setMoviesSavedList] = useState([]);
   const [dataAllMovies, setDataAllMovies] = useState([]);
-  const [isLoad, setIsLoad] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
-  //* init render card, user-prof
+  //* get data card, user-prof
   useEffect(() => {
     Promise.all([apiMain.getUser(), apiMain.getMovies(), getMovies()])
       .then(([userData, dataSaveMovies, dataAllMovies]) => {
@@ -40,25 +40,38 @@ function App() {
         setMoviesSavedList(dataSaveMovies);
         setDataAllMovies(dataAllMovies);
         setIsAuthorezed(true);
-        setIsLoad(false);
+        setIsLoading(true);
       })
       .catch((error) => {
         console.error(`Ошибка: ${error}`);
-        setIsLoad(false);
-      });
+        setIsLoading(false);
+      }).finally(() => {
+        setIsLoading(false);
+      })
   }, [localStorageToken]);
 
   function updateDataUser(userData) {
     apiMain.setUserData(userData);
   }
 
-  //*login, register and logout
-  function hadleSubmitLogin(data) {
+  //*register, login, checkToken and logout
+  function registerUser(data) {
+    register(data)
+      .then((response) => {
+        if (response) {
+          loginUser({ email: data.email, password: data.password });
+        }
+      })
+      .catch((error) => {
+        console.error(`Ошибка: ${error}`);
+      });
+  }
+
+  function loginUser(data) {
     authorize(data)
       .then(({ token }) => {
         token && localStorage.setItem("token", token);
-        // checkToken();
-        setIsAuthorezed(true);
+        checkToken();
         navigate("/movies", { replace: true });
       })
       .catch((error) => {
@@ -67,49 +80,49 @@ function App() {
         // setisMassagePopupOpen(true);
       });
   }
-  function handleLogout() {
-    localStorage.clear();
-    navigate("/signin");
-    setIsAuthorezed(false);
-  }
 
-  //*checkToken
   function checkToken() {
     if (localStorageToken) {
       apiCheckToken(localStorageToken)
         .then((response) => {
-          if (response.email) {
+          if (response) {
             setIsAuthorezed(true);
-            setIsLoad(false);
           }
         })
         .catch((error) => console.error(`Ошибка: ${error}`));
     }
   }
-  // eslint-disable-next-line
   useEffect(checkToken, [localStorageToken]);
 
-function handleDeleteMovie(movie) {
-  apiMain
-    .delMovie(movie._id)
-    .then(() => {
-      setMoviesSavedList(moviesSavedList.filter((item) => item._id !== movie._id));
-    })
-    .catch((error) => console.error(`Ошибка: ${error}`));
-}
+  function logoutUser() {
+    localStorage.clear();
+    navigate("/signin");
+    setIsAuthorezed(false);
+  }
 
-function handleAddMovie(movie) {
-  apiMain
-    .addMovie(movie)
-    .then((newMovie) => {
-      setMoviesSavedList([...moviesSavedList, newMovie]);
-    })
-    .catch((error) => console.error(`Ошибка: ${error}`));
-}
+  //* add and delete movie
+  function addMovieUserList(movie) {
+    apiMain
+      .addMovie(movie)
+      .then((newMovie) => {
+        setMoviesSavedList([...moviesSavedList, newMovie]);
+      })
+      .catch((error) => console.error(`Ошибка: ${error}`));
+  }
+
+  function deletedMovie(movie) {
+    apiMain
+      .delMovie(movie._id)
+      .then(() => {
+        setMoviesSavedList(
+          moviesSavedList.filter((item) => item._id !== movie._id)
+        );
+      })
+      .catch((error) => console.error(`Ошибка: ${error}`));
+  }
 
 
-
-  return isLoad ? (
+  return isLoading ? (
     <Preloader />
   ) : (
     <CurrentUserContext.Provider value={currentUser}>
@@ -121,18 +134,28 @@ function handleAddMovie(movie) {
           <Route element={<ProtectedRoute isAuthorezed={isAuthorezed} />}>
             <Route
               path="/movies"
-              element={<Movies dataAllMovies={dataAllMovies} handleAddMovie={handleAddMovie} />}
+              element={
+                <Movies
+                  dataAllMovies={dataAllMovies}
+                  addMovieUserList={addMovieUserList}
+                />
+              }
             />
             <Route
               path="/saved-movies"
-              element={<SavedMovies handleDeleteMovie={handleDeleteMovie} moviesSavedList={moviesSavedList} />}
+              element={
+                <SavedMovies
+                deletedMovie={deletedMovie}
+                  moviesSavedList={moviesSavedList}
+                />
+              }
             />
             <Route
               path="/profile"
               element={
                 <Profile
                   onUpdateDataUser={updateDataUser}
-                  handleSignOut={handleLogout}
+                  logoutUser={logoutUser}
                 />
               }
             />
@@ -142,9 +165,12 @@ function handleAddMovie(movie) {
           <Route path="/" element={<Main />} />
           <Route
             path="/signin"
-            element={<Login hadleSubmitLogin={hadleSubmitLogin} />}
+            element={<Login loginUser={loginUser} />}
           />
-          <Route path="/signup" element={<Register />} />
+          <Route
+            path="/signup"
+            element={<Register registerUser={registerUser} />}
+          />
         </Routes>
         {visabilityPathHeaderFooter.includes(location) && <Footer />}
       </div>

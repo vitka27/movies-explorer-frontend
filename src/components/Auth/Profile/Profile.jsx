@@ -2,7 +2,7 @@ import { React, useContext, useEffect, useState } from "react";
 import { CurrentUserContext } from "../../../contexts/CurrentUserContext";
 import useValidation from "../../../hooks/useValidation";
 
-export default function Profile({ onUpdateDataUser, handleSignOut }) {
+export default function Profile({ onUpdateDataUser, logoutUser }) {
   const userData = useContext(CurrentUserContext);
   const {
     values,
@@ -135,7 +135,7 @@ export default function Profile({ onUpdateDataUser, handleSignOut }) {
                   Редактировать
                 </button>
                 <button
-                  onClick={handleSignOut}
+                  onClick={logoutUser}
                   className="profile__button profile__button_type_exit"
                   type="button"
                   aria-label="Выйти из аккаунта"

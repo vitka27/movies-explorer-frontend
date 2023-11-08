@@ -1,10 +1,9 @@
 import React from "react";
 import Form from "../../Form/Form";
 import Input from "../../Form/Input/Input";
-import { register } from "../../../utils/Auth";
 import useValidation from "../../../hooks/useValidation";
 
-export default function Register() {
+export default function Register({ registerUser }) {
   const {
     values,
     errors,
@@ -18,12 +17,15 @@ export default function Register() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    register(values).then((res) => {
-      console.log(res);
-    });
+    registerUser(values);
   };
+
   return (
-    <Form title="Добро пожаловать!" isValidForm={isValidForm} handleSubmit={handleSubmit}>
+    <Form
+      title="Добро пожаловать!"
+      isValidForm={isValidForm}
+      handleSubmit={handleSubmit}
+    >
       <Input
         inputName="Имя"
         name="name"

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import SearchForm from "../Movies/SearchForm/SearchForm";
 import MoviesCardList from "../Movies/MoviesCardList/MoviesCardList";
 
-export default function SavedMovies({ moviesSavedList, handleDeleteMovie }) {
+export default function SavedMovies({ moviesSavedList, deletedMovie }) {
   const [moviesList, setMoviesList] = useState([]);
 
 
@@ -12,7 +12,7 @@ export default function SavedMovies({ moviesSavedList, handleDeleteMovie }) {
       moviesSavedList={moviesSavedList}
       setMoviesList={setMoviesList}
       />
-      <MoviesCardList movies={moviesList} handleDeleteMovie={handleDeleteMovie} />
+      <MoviesCardList movies={moviesList} deletedMovie={deletedMovie} />
     </main>
   );
 }
