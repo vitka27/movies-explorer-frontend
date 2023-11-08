@@ -69,6 +69,15 @@
   flex-direction: column;
   padding-top: 220px;
 }
+.profile__notification{
+  margin-bottom: 16px;
+  color: rgb(139, 233, 139);
+  text-align: center;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
 .profile__button {
   margin: 0;
   padding: 0;

@@ -10,13 +10,11 @@ export default function Profile({ onUpdateDataUser, logoutUser }) {
     isValidInputs,
     isValidForm,
     handleChange,
-    isEmpty,
-    onBlur,
-    isDirty,
     reset,
   } = useValidation();
   const [isEdit, setIsEdit] = useState(false);
   const [toDisable, setToDisable] = useState(true);
+  const [successfully, setSuccessfully] = useState(false);
 
   function toggleEdit(event) {
     event.preventDefault();
@@ -32,6 +30,7 @@ export default function Profile({ onUpdateDataUser, logoutUser }) {
   function handleSubmit(event) {
     event.preventDefault();
     onUpdateDataUser(values);
+    setSuccessfully(true);
     setIsEdit(!isEdit);
     setToDisable(!toDisable);
   }
@@ -106,9 +105,15 @@ export default function Profile({ onUpdateDataUser, logoutUser }) {
           </div>
 
           <div className="profile__buttons">
+            {successfully ? (
+              <span className="profile__notification">Успешно</span>
+            ) : (
+              ""
+            )}
             {isEdit ? (
               <>
                 <button
+                  disabled={!isValidForm}
                   className="profile__button"
                   type="submit"
                   aria-label="Сохранить"
