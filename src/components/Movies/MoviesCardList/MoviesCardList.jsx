@@ -1,16 +1,73 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import More from "../More/More";
 import MoviesCard from "../MoviesCard/MoviesCard";
+import { SCREEN_SETTINGS } from "../../../utils/const";
 
-export default function MoviesCardList({ movies, handleDeleteMovie, handleAddMovie }) {
+export default function MoviesCardList({
+  movies,
+  handleDeleteMovie,
+  handleAddMovie,
+}) {
   const isSavedMoviesLocation = "/saved-movies" === useLocation().pathname;
+  const [endCountCardList, setEndCountCardList] = useState("");
 
-  const actMore = movies.length >= 16;
+  const moviesListRender = movies.slice(0, endCountCardList);
+
+  function handleClickMore() {
+    setEndCountCardList(endCountCardList + countMovies().stepDisplayMovie);
+  }
+  
+  function countMovies() {
+    const counter = {
+      initialQuantityMovies: SCREEN_SETTINGS.default.cards.initialQuantityMovies,
+      stepDisplayMovie: SCREEN_SETTINGS.default.cards.stepDisplayMovie,
+    };
+    if (window.innerWidth < SCREEN_SETTINGS.desktop.width) {
+      counter.initialQuantityMovies = SCREEN_SETTINGS.desktop.cards.initialQuantityMovies;
+      counter.stepDisplayMovie = SCREEN_SETTINGS.desktop.cards.stepDisplayMovie;
+    }
+    if (window.innerWidth < SCREEN_SETTINGS.tablet.width) {
+      counter.initialQuantityMovies = SCREEN_SETTINGS.tablet.cards.initialQuantityMovies;
+      counter.stepDisplayMovie = SCREEN_SETTINGS.tablet.cards.stepDisplayMovie;
+    }
+    if (window.innerWidth < SCREEN_SETTINGS.mobile.width) {
+      counter.initialQuantityMovies = SCREEN_SETTINGS.mobile.cards.initialQuantityMovies;
+      counter.stepDisplayMovie = SCREEN_SETTINGS.mobile.cards.stepDisplayMovie;
+    }
+    return counter;
+  }
+
+  function showResize() {
+    if (window.innerWidth >= SCREEN_SETTINGS.default.width) {
+      setEndCountCardList(countMovies().initialQuantityMovies);
+    }
+    if (window.innerWidth < SCREEN_SETTINGS.desktop.width) {
+      setEndCountCardList(countMovies().initialQuantityMovies);
+    }
+    if (window.innerWidth < SCREEN_SETTINGS.tablet.width) {
+      setEndCountCardList(countMovies().initialQuantityMovies);
+    }
+    if (window.innerWidth < SCREEN_SETTINGS.mobile.width) {
+      setEndCountCardList(countMovies().initialQuantityMovies);
+    }
+  }
+
+  useEffect(() => {
+    if (!isSavedMoviesLocation) {
+      setEndCountCardList(countMovies().initialQuantityMovies);
+      window.addEventListener("resize", showResize, {
+        capture: true,
+        passive: true,
+      });
+      return () => window.removeEventListener("resize", showResize);
+    }
+  }, [isSavedMoviesLocation]);
+
   return (
     <div className="wrapper__section wrapper__section_theme_dark movies-card-list">
       <div className="wrapper__section-container movies-card-list__container">
-        {movies.map((movie) => (
+        {moviesListRender.map((movie) => (
           <MoviesCard
             key={isSavedMoviesLocation ? movie._id : movie.id}
             movie={movie}
@@ -19,7 +76,11 @@ export default function MoviesCardList({ movies, handleDeleteMovie, handleAddMov
           />
         ))}
       </div>
-      {actMore ? <More /> : ""}
+      {endCountCardList >= movies.length ? (
+        ""
+      ) : (
+        <More handleClickMore={handleClickMore} />
+      )}
     </div>
   );
 }
