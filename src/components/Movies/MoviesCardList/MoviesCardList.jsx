@@ -6,13 +6,16 @@ import { SCREEN_SETTINGS } from "../../../utils/const";
 
 export default function MoviesCardList({
   movies,
+  moviesSavedList,
   deletedMovie,
   addMovieUserList,
 }) {
   const isSavedMoviesLocation = "/saved-movies" === useLocation().pathname;
   const [endCountCardList, setEndCountCardList] = useState("");
 
-  const moviesListRender = movies.slice(0, endCountCardList);
+  const moviesListRender = isSavedMoviesLocation
+    ? movies
+    : movies.slice(0, endCountCardList);
 
   function handleClickMore() {
     setEndCountCardList(endCountCardList + countMovies().stepDisplayMovie);
@@ -20,19 +23,23 @@ export default function MoviesCardList({
 
   function countMovies() {
     const counter = {
-      initialQuantityMovies: SCREEN_SETTINGS.default.cards.initialQuantityMovies,
+      initialQuantityMovies:
+        SCREEN_SETTINGS.default.cards.initialQuantityMovies,
       stepDisplayMovie: SCREEN_SETTINGS.default.cards.stepDisplayMovie,
     };
     if (window.innerWidth < SCREEN_SETTINGS.desktop.width) {
-      counter.initialQuantityMovies = SCREEN_SETTINGS.desktop.cards.initialQuantityMovies;
+      counter.initialQuantityMovies =
+        SCREEN_SETTINGS.desktop.cards.initialQuantityMovies;
       counter.stepDisplayMovie = SCREEN_SETTINGS.desktop.cards.stepDisplayMovie;
     }
     if (window.innerWidth < SCREEN_SETTINGS.tablet.width) {
-      counter.initialQuantityMovies = SCREEN_SETTINGS.tablet.cards.initialQuantityMovies;
+      counter.initialQuantityMovies =
+        SCREEN_SETTINGS.tablet.cards.initialQuantityMovies;
       counter.stepDisplayMovie = SCREEN_SETTINGS.tablet.cards.stepDisplayMovie;
     }
     if (window.innerWidth < SCREEN_SETTINGS.mobile.width) {
-      counter.initialQuantityMovies = SCREEN_SETTINGS.mobile.cards.initialQuantityMovies;
+      counter.initialQuantityMovies =
+        SCREEN_SETTINGS.mobile.cards.initialQuantityMovies;
       counter.stepDisplayMovie = SCREEN_SETTINGS.mobile.cards.stepDisplayMovie;
     }
     return counter;
@@ -72,10 +79,13 @@ export default function MoviesCardList({
             movie={movie}
             deletedMovie={deletedMovie}
             addMovieUserList={addMovieUserList}
+            moviesSavedList={moviesSavedList}
           />
         ))}
       </div>
-      {endCountCardList >= movies.length ? (
+      {isSavedMoviesLocation ? (
+        ""
+      ) : endCountCardList >= movies.length ? (
         ""
       ) : (
         <More handleClickMore={handleClickMore} />

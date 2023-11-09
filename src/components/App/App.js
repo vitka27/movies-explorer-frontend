@@ -114,6 +114,8 @@ function App() {
     apiMain
       .delMovie(movie._id)
       .then(() => {
+        console.log(movie._id);
+
         setMoviesSavedList(
           moviesSavedList.filter((item) => item._id !== movie._id)
         );
@@ -138,6 +140,8 @@ function App() {
                 <Movies
                   dataAllMovies={dataAllMovies}
                   addMovieUserList={addMovieUserList}
+                  deletedMovie={deletedMovie}
+                  moviesSavedList={moviesSavedList}
                 />
               }
             />
