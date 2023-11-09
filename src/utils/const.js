@@ -24,14 +24,14 @@ export const SCREEN_SETTINGS = {
     },
   },
   tablet: {
-    width: 1024,
+    width: 966,
     cards: {
       initialQuantityMovies: 8,
       stepDisplayMovie: 2,
     },
   },
   mobile: {
-    width: 640,
+    width: 623,
     cards: {
       initialQuantityMovies: 5,
       stepDisplayMovie: 2,
