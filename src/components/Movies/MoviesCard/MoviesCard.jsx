@@ -44,15 +44,22 @@ export default function MoviesCard({
 
   return (
     <article className="movies-card">
-      <img
-        src={
-          isSavedMoviesLocation
-            ? movie.image
-            : BASE_URL_MOVIES + movie.image.url
-        }
-        alt={movie.nameRU}
-        className="movies-card__img"
-      />
+      <a
+        href={movie.trailerLink}
+        className="movies-card__img-link"
+        rel="noreferrer"
+        target="_blank"
+      >
+        <img
+          src={
+            isSavedMoviesLocation
+              ? movie.image
+              : BASE_URL_MOVIES + movie.image.url
+          }
+          alt={movie.nameRU}
+          className="movies-card__img"
+        />
+      </a>
       <h2 className="movies-card__title">{movie.nameRU}</h2>
       {isSavedMoviesLocation ? (
         <button

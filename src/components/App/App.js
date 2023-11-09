@@ -40,44 +40,56 @@ function App() {
         setMoviesSavedList(dataSaveMovies);
         setDataAllMovies(dataAllMovies);
         setIsAuthorezed(true);
+      })
+      .catch((error) => {
+        console.error(`Ошибка: ${error}`);
+      });
+  }, []);
+
+  function updateDataUser(userData) {
+    apiMain
+      .setUserData(userData)
+      .then((response) => {
         setIsLoading(true);
       })
       .catch((error) => {
         console.error(`Ошибка: ${error}`);
-        setIsLoading(false);
-      }).finally(() => {
-        setIsLoading(false);
       })
-  }, [localStorageToken]);
-
-  function updateDataUser(userData) {
-    apiMain.setUserData(userData);
+      .finally(() => {
+        setIsLoading(false);
+      });
   }
 
   //*register, login, checkToken and logout
   function registerUser(data) {
     register(data)
       .then((response) => {
+        setIsLoading(true);
         if (response) {
           loginUser({ email: data.email, password: data.password });
         }
       })
       .catch((error) => {
         console.error(`Ошибка: ${error}`);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }
 
   function loginUser(data) {
     authorize(data)
       .then(({ token }) => {
+        setIsLoading(true);
         token && localStorage.setItem("token", token);
         checkToken();
         navigate("/movies", { replace: true });
       })
       .catch((error) => {
         console.error(`Ошибка: ${error}`);
-        // setIsSuccessfully(false);
-        // setisMassagePopupOpen(true);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }
 
@@ -85,19 +97,23 @@ function App() {
     if (localStorageToken) {
       apiCheckToken(localStorageToken)
         .then((response) => {
+          setIsLoading(true);
           if (response) {
             setIsAuthorezed(true);
           }
         })
-        .catch((error) => console.error(`Ошибка: ${error}`));
+        .catch((error) => console.error(`Ошибка: ${error}`))
+        .finally(() => {
+          setIsLoading(false);
+        });
     }
   }
   useEffect(checkToken, [localStorageToken]);
 
   function logoutUser() {
     localStorage.clear();
-    navigate("/signin");
     setIsAuthorezed(false);
+    navigate("/signin");
   }
 
   //* add and delete movie
@@ -123,7 +139,6 @@ function App() {
       .catch((error) => console.error(`Ошибка: ${error}`));
   }
 
-
   return isLoading ? (
     <Preloader />
   ) : (
@@ -139,9 +154,9 @@ function App() {
               element={
                 <Movies
                   dataAllMovies={dataAllMovies}
+                  moviesSavedList={moviesSavedList}
                   addMovieUserList={addMovieUserList}
                   deletedMovie={deletedMovie}
-                  moviesSavedList={moviesSavedList}
                 />
               }
             />
@@ -149,8 +164,8 @@ function App() {
               path="/saved-movies"
               element={
                 <SavedMovies
-                deletedMovie={deletedMovie}
                   moviesSavedList={moviesSavedList}
+                  deletedMovie={deletedMovie}
                 />
               }
             />
@@ -167,10 +182,7 @@ function App() {
           </Route>
 
           <Route path="/" element={<Main />} />
-          <Route
-            path="/signin"
-            element={<Login loginUser={loginUser} />}
-          />
+          <Route path="/signin" element={<Login loginUser={loginUser} />} />
           <Route
             path="/signup"
             element={<Register registerUser={registerUser} />}

@@ -13,6 +13,9 @@ export default function MoviesCardList({
   const isSavedMoviesLocation = "/saved-movies" === useLocation().pathname;
   const [endCountCardList, setEndCountCardList] = useState("");
 
+  const isEmptyMovieList = movies.length === 0 ? true : false;
+  console.log(movies.length, isEmptyMovieList);
+
   const moviesListRender = isSavedMoviesLocation
     ? movies
     : movies.slice(0, endCountCardList);
@@ -71,25 +74,40 @@ export default function MoviesCardList({
   }, [isSavedMoviesLocation]);
 
   return (
-    <div className="wrapper__section wrapper__section_theme_dark movies-card-list">
-      <div className="wrapper__section-container movies-card-list__container">
-        {moviesListRender.map((movie) => (
-          <MoviesCard
-            key={isSavedMoviesLocation ? movie._id : movie.id}
-            movie={movie}
-            deletedMovie={deletedMovie}
-            addMovieUserList={addMovieUserList}
-            moviesSavedList={moviesSavedList}
-          />
-        ))}
-      </div>
-      {isSavedMoviesLocation ? (
-        ""
-      ) : endCountCardList >= movies.length ? (
-        ""
+    <>
+      {isEmptyMovieList ? (
+        !isSavedMoviesLocation ? (
+          <span className="wrapper__notification">
+            Ничего не найдено. <br />
+            Измените поисковой запрос.
+          </span>
+        ) : (
+          <span className="wrapper__notification">
+            Ничего не найдено.
+          </span>
+        )
       ) : (
-        <More handleClickMore={handleClickMore} />
+        <div className="wrapper__section wrapper__section_theme_dark movies-card-list">
+          <div className="wrapper__section-container movies-card-list__container">
+            {moviesListRender.map((movie) => (
+              <MoviesCard
+                key={isSavedMoviesLocation ? movie._id : movie.id}
+                movie={movie}
+                deletedMovie={deletedMovie}
+                addMovieUserList={addMovieUserList}
+                moviesSavedList={moviesSavedList}
+              />
+            ))}
+          </div>
+          {isSavedMoviesLocation ? (
+            ""
+          ) : endCountCardList >= movies.length ? (
+            ""
+          ) : (
+            <More handleClickMore={handleClickMore} />
+          )}
+        </div>
       )}
-    </div>
+    </>
   );
 }
