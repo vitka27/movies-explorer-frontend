@@ -22,25 +22,24 @@ export default function MoviesCard({
     }
   }, [isSavedMoviesLocation, movie.id, moviesSavedList]);
 
-  // что то не так с лайком передается не тот ид
-  function handleClickAdd() {
-    const isMovieSaved = moviesSavedList.some(
-      (item) => item.movieId === movie.id
-    );
-    if (isMovieSaved) {
-      deletedMovie(movie);
+  function toggleAddMovie() {
+    const movieInSaveList = moviesSavedList.find((element) => {
+      return element.movieId === movie.id;
+    });
+    if (movieInSaveList) {
+      deletedMovie(movieInSaveList);
       setIsLike(false);
-      console.log('add',movie);
+      console.log("del", movie);
     } else {
       setIsLike(true);
       addMovieUserList(movie);
-      console.log('del',movie);
+      console.log("add", movie);
     }
   }
 
-  function handleClickRemove() {
+  function handleRemoveMovie() {
     deletedMovie(movie);
-    console.log('del',movie);
+    console.log("del", movie);
   }
 
   return (
@@ -62,7 +61,7 @@ export default function MoviesCard({
           className={
             "movies-card__action movies-card__action_like_active movies-card__action_delete"
           }
-          onClick={handleClickRemove}
+          onClick={handleRemoveMovie}
         ></button>
       ) : (
         <button
@@ -73,7 +72,7 @@ export default function MoviesCard({
               ? "movies-card__action movies-card__action_like_active"
               : "movies-card__action movies-card__action_like_disactive"
           }
-          onClick={handleClickAdd}
+          onClick={toggleAddMovie}
         ></button>
       )}
       <p className="movies-card__time">{timeConvert(movie.duration)}</p>
