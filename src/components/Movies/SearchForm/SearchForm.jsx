@@ -11,7 +11,7 @@ export default function SearchForm({
 }) {
   const isLocationMovies = useLocation().pathname === "/movies";
   const filmsForProcessing = isLocationMovies ? dataAllMovies : moviesSavedList;
-  const { values, errors, handleChange, reset } = useValidation();
+  const { values, handleChange, reset } = useValidation();
 
   const {
     filterMovies,

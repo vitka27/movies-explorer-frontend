@@ -1,5 +1,11 @@
 import { useState, useEffect } from "react";
-import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
+import {
+  Route,
+  Routes,
+  useLocation,
+  useNavigate,
+  Navigate,
+} from "react-router-dom";
 
 import { visabilityPathHeaderFooter } from "../../utils/const";
 import apiMain from "../../utils/MainApi";
@@ -40,10 +46,14 @@ function App() {
         setMoviesSavedList(dataSaveMovies);
         setDataAllMovies(dataAllMovies);
         setIsAuthorezed(true);
+        setIsLoading(true);
+
       })
       .catch((error) => {
         console.error(`Ошибка: ${error}`);
-      });
+      }).finally(() => {
+        setIsLoading(false);
+      })
   }, []);
 
   function updateDataUser(userData) {
@@ -180,13 +190,27 @@ function App() {
             />
             <Route path="*" element={<NotFound />} />
           </Route>
-
-          <Route path="/" element={<Main />} />
-          <Route path="/signin" element={<Login loginUser={loginUser} />} />
+          <Route
+            path="/signin"
+            element={
+              isAuthorezed ? (
+                <Navigate to="/" replace />
+              ) : (
+                <Login loginUser={loginUser} />
+              )
+            }
+          />
           <Route
             path="/signup"
-            element={<Register registerUser={registerUser} />}
+            element={
+              isAuthorezed ? (
+                <Navigate to="/" replace />
+              ) : (
+                <Register registerUser={registerUser} />
+              )
+            }
           />
+          <Route path="/" element={<Main />} />
         </Routes>
         {visabilityPathHeaderFooter.includes(location) && <Footer />}
       </div>
