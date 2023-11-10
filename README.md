@@ -12,3 +12,6 @@
 
 Приложение запускается в режиме разработки.
 Откройте [http://localhost:3000 ](http://localhost:3000), чтобы просмотреть его в вашем браузере.
+
+Открыть [пулл реквест](https://github.com/vitka27/movies-explorer-frontend/pull/2)
+Ссылка на проект https://bitfilmsdb.nomoredomainsrocks.ru/saved-movies
