@@ -14,7 +14,6 @@ export default function MoviesCardList({
   const [endCountCardList, setEndCountCardList] = useState("");
 
   const isEmptyMovieList = movies.length === 0 ? true : false;
-  console.log(movies.length, isEmptyMovieList);
 
   const moviesListRender = isSavedMoviesLocation
     ? movies

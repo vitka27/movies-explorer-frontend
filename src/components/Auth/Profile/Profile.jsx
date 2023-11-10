@@ -20,11 +20,13 @@ export default function Profile({ onUpdateDataUser, logoutUser }) {
     event.preventDefault();
     setIsEdit(!isEdit);
     setToDisable(!toDisable);
+    setSuccessfully(false);
   }
 
   function cancelEdit(event) {
     event.preventDefault();
     setIsEdit(!isEdit);
+    setSuccessfully(false);
   }
 
   function handleSubmit(event) {
@@ -124,7 +126,7 @@ export default function Profile({ onUpdateDataUser, logoutUser }) {
                   onClick={cancelEdit}
                   className="profile__button profile__button_type_exit"
                   type="button"
-                  aria-label="Выйти из аккаунта"
+                  aria-label="отменить изменения"
                 >
                   Отменить
                 </button>

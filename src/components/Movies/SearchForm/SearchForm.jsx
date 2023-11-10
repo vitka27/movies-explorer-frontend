@@ -39,7 +39,9 @@ export default function SearchForm({
   }, [filmsForProcessing, isLocationMovies, reset, setIsShotMovie]);
 
   useEffect(() => {
-    setSearchMovie(values.search);
+    if (values.search) {
+      setSearchMovie(values.search);
+    }
   }, [setSearchMovie, values.search]);
 
   useEffect(() => {
