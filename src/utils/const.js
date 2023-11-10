@@ -6,7 +6,7 @@ export const visabilityPathHeaderFooter = [
 ];
 
 export const BASE_URL_MOVIES = "https://api.nomoreparties.co/";
-export const BASE_URL_MAIN = "https://api.bitfilmsdb.nomoredomainsrocks.ru";
+export const BASE_URL_MAIN = "https://bitfilmsdb.nomoredomainsrocks.ru/api";
 
 export const SCREEN_SETTINGS = {
   default: {
