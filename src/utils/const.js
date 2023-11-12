@@ -6,6 +6,7 @@ export const visabilityPathHeaderFooter = [
 ];
 
 export const REGEX_EMAIL = "[A-Za-z0-9_]+@[A-Za-z0-9]+\\.[a-z]{2,4}";
+export const REGEX_NAME = "^[а-яА-ЯёËa-zA-Z\\s\\-]+$";
 
 export const BASE_URL_MOVIES = "https://api.nomoreparties.co/";
 export const BASE_URL_MAIN = "https://api.bitfilmsdb.nomoredomainsrocks.ru";

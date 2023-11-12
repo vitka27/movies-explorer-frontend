@@ -1,7 +1,7 @@
 import { React, useContext, useEffect, useState } from "react";
 import { CurrentUserContext } from "../../../contexts/CurrentUserContext";
 import useValidation from "../../../hooks/useValidation";
-import { REGEX_EMAIL } from "../../../utils/const";
+import { REGEX_EMAIL, REGEX_NAME } from "../../../utils/const";
 
 export default function Profile({ onUpdateDataUser, logoutUser }) {
   const userData = useContext(CurrentUserContext);
@@ -72,6 +72,7 @@ export default function Profile({ onUpdateDataUser, logoutUser }) {
                 value={values.name || ""}
                 onChange={handleChange}
                 required=""
+                pattern={REGEX_NAME}
                 minLength={2}
                 maxLength={30}
                 aria-label="Имя"

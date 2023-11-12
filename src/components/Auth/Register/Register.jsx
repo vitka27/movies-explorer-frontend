@@ -2,7 +2,7 @@ import React from "react";
 import Form from "../../Form/Form";
 import Input from "../../Form/Input/Input";
 import useValidation from "../../../hooks/useValidation";
-import { REGEX_EMAIL } from "../../../utils/const";
+import { REGEX_EMAIL, REGEX_NAME } from "../../../utils/const";
 
 export default function Register({ registerUser }) {
   const {
@@ -39,6 +39,7 @@ export default function Register({ registerUser }) {
         isDirty={isDirty}
         isValidInputs={isValidInputs}
         required=""
+        pattern={REGEX_NAME}
         minLength={2}
         maxLength={30}
         placeholder="Введите ваше Имя"
