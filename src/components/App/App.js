@@ -204,7 +204,7 @@ function App() {
             path="/signin"
             element={
               isAuthorezed ? (
-                <Navigate to="/" replace />
+                <Navigate to="/movies" replace />
               ) : (
                 <Login loginUser={loginUser} />
               )
@@ -214,7 +214,7 @@ function App() {
             path="/signup"
             element={
               isAuthorezed ? (
-                <Navigate to="/" replace />
+                <Navigate to="/movies" replace />
               ) : (
                 <Register registerUser={registerUser} />
               )
