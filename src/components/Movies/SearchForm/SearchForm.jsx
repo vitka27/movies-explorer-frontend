@@ -1,56 +1,80 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useCallback, useState } from "react";
 import FilterCheckbox from "./FilterCheckbox/FilterCheckbox";
-import useValidation from "../../../hooks/useValidation";
-import useSearch from "../../../hooks/useSearch";
 import { useLocation } from "react-router-dom";
 
 export default function SearchForm({
-  dataAllMovies,
   moviesSavedList,
   setMoviesList,
+  getAllMovies,
 }) {
   const isLocationMovies = useLocation().pathname === "/movies";
-  const filmsForProcessing = isLocationMovies ? dataAllMovies : moviesSavedList;
-  const { values, handleChange, reset } = useValidation();
+  const [searchQuery, setSearchQuery] = useState("");
+  const [isShot, setIsShot] = useState(false);
 
-  const {
-    filterMovies,
-    moviesList,
-    setSearchMovie,
-    searchMovie,
-    setIsShotMovie,
-    resetMovies,
-  } = useSearch();
+  const [dataAllMovies, setDataAllMovies] = useState([]);
+
+  const filters = useCallback(
+    (search, movies, isShot, showMoviesList = false) => {
+
+      if (isLocationMovies) {
+        localStorage.setItem("search", JSON.stringify(search));
+        localStorage.setItem("isShot", JSON.stringify(isShot));
+        localStorage.setItem("movies", JSON.stringify(movies));
+      }
+
+      const filterShotMovies = (resultMovies) =>
+        resultMovies.filter((movie) => movie.duration <= 40);
+
+      const resultSearch = movies.filter((movie) =>
+        movie.nameRU.toLowerCase().includes(search.toLowerCase())
+      );
+
+      if (!search) {
+        showMoviesList ? setMoviesList(movies) : setMoviesList([]);
+      } else {
+        isShot
+          ? setMoviesList(filterShotMovies(resultSearch))
+          : setMoviesList(resultSearch);
+      }
+    },
+    []
+  );
 
   const onSubmitSearch = (event) => {
     event.preventDefault();
-    filterMovies(filmsForProcessing);
-    isLocationMovies &&
-      localStorage.setItem("searchMovie", searchMovie) &&
-      localStorage.setItem("movies", JSON.stringify(filmsForProcessing));
+    goSearch();
+  };
+
+  const goSearch = () => {
+    if (isLocationMovies) {
+      if (dataAllMovies.length === 0) {
+        getAllMovies().then((response) => {
+          setDataAllMovies(response);
+          filters(searchQuery, response, isShot, false);
+        });
+      } else {
+        filters(searchQuery, dataAllMovies, isShot, false);
+      }
+    } else {
+      filters(searchQuery, moviesSavedList, isShot, true);
+    }
   };
 
   useEffect(() => {
     if (isLocationMovies) {
-      reset({ search: localStorage.searchMovie });
-      setIsShotMovie(localStorage.isShotMovie === "true" ? true : false);
-      filterMovies(filmsForProcessing);
+      if (localStorage.search && localStorage.movies) {
+        const search = JSON.parse(localStorage.search);
+        const movies = JSON.parse(localStorage.movies);
+        const shot = localStorage.isShot === "true" ? true : false;
+        setDataAllMovies(movies);
+        setSearchQuery(search);
+        setIsShot(shot);
+        filters(search, movies, shot, false);
+      }
+    } else {
+      filters(searchQuery, moviesSavedList, isShot, true);
     }
-  }, [filmsForProcessing, isLocationMovies, reset, setIsShotMovie]);
-
-  useEffect(() => {
-    if (values.search) {
-      setSearchMovie(values.search);
-    }
-  }, [setSearchMovie, values.search]);
-
-  useEffect(() => {
-    !isLocationMovies && resetMovies(moviesSavedList);
-  }, [isLocationMovies, moviesSavedList, resetMovies]);
-
-  useEffect(() => {
-    setMoviesList(moviesList);
-  }, [moviesList, setMoviesList]);
+  }, [filters, isLocationMovies, isShot, moviesSavedList]);
 
 
   return (
@@ -63,8 +87,10 @@ export default function SearchForm({
         >
           <input
             name="search"
-            onChange={handleChange}
-            value={values.search || ""}
+            onChange={(event) => {
+              setSearchQuery(event.target.value);
+            }}
+            value={searchQuery || ""}
             type="text"
             className="search-form__form-input"
             placeholder="Фильм"
@@ -80,7 +106,7 @@ export default function SearchForm({
         </form>
         <FilterCheckbox
           title="Короткометражки"
-          setIsShotMovie={setIsShotMovie}
+          setIsShot={setIsShot}
           isLocationMovies={isLocationMovies}
         />
       </div>

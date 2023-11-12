@@ -35,26 +35,38 @@ function App() {
   const [isAuthorezed, setIsAuthorezed] = useState(false);
   const [currentUser, setCurrentUser] = useState({});
   const [moviesSavedList, setMoviesSavedList] = useState([]);
-  const [dataAllMovies, setDataAllMovies] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   //* get data card, user-prof
   useEffect(() => {
-    Promise.all([apiMain.getUser(), apiMain.getMovies(), getMovies()])
-      .then(([userData, dataSaveMovies, dataAllMovies]) => {
+    Promise.all([apiMain.getUser(), apiMain.getMovies()])
+      .then(([userData, dataSaveMovies]) => {
         setCurrentUser(userData);
         setMoviesSavedList(dataSaveMovies);
-        setDataAllMovies(dataAllMovies);
         setIsAuthorezed(true);
         setIsLoading(true);
-
       })
       .catch((error) => {
         console.error(`Ошибка: ${error}`);
-      }).finally(() => {
-        setIsLoading(false);
       })
+      .finally(() => {
+        setIsLoading(false);
+      });
   }, []);
+
+  function getAllMovies() {
+    return getMovies()
+      .then((response) => {
+        setIsLoading(true);
+        return response;
+      })
+      .catch((error) => {
+        console.error(`Ошибка: ${error}`);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }
 
   function updateDataUser(userData) {
     apiMain
@@ -140,8 +152,6 @@ function App() {
     apiMain
       .delMovie(movie._id)
       .then(() => {
-        console.log(movie._id);
-
         setMoviesSavedList(
           moviesSavedList.filter((item) => item._id !== movie._id)
         );
@@ -163,7 +173,7 @@ function App() {
               path="/movies"
               element={
                 <Movies
-                  dataAllMovies={dataAllMovies}
+                  getAllMovies={getAllMovies}
                   moviesSavedList={moviesSavedList}
                   addMovieUserList={addMovieUserList}
                   deletedMovie={deletedMovie}

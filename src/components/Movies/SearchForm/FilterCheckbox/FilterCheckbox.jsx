@@ -1,23 +1,20 @@
 import React, { useEffect, useState } from "react";
 
-export default function FilterCheckbox({
-  title,
-  setIsShotMovie,
-  isLocationMovies,
-}) {
+export default function FilterCheckbox({ title, setIsShot, isLocationMovies }) {
   const [isChecked, setIsChecked] = useState(false);
 
   function handleChange() {
     const newIsChecked = !isChecked;
     setIsChecked(newIsChecked);
-    setIsShotMovie(newIsChecked);
-    isLocationMovies && localStorage.setItem("isShotMovie", newIsChecked);
+    setIsShot(newIsChecked);
+    isLocationMovies &&
+      localStorage.setItem("isShot", JSON.stringify(newIsChecked));
   }
 
   useEffect(() => {
     isLocationMovies &&
-      setIsChecked(localStorage.isShotMovie === "true" ? true : false);
-  }, [isLocationMovies, setIsShotMovie]);
+      setIsChecked(localStorage.isShot === "true" ? true : false);
+  }, [isLocationMovies, setIsShot]);
 
   return (
     <div className="filter-checkbox">

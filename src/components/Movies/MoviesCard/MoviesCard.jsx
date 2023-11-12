@@ -39,7 +39,6 @@ export default function MoviesCard({
 
   function handleRemoveMovie() {
     deletedMovie(movie);
-    console.log("del", movie);
   }
 
   return (
