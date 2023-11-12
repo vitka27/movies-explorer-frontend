@@ -75,16 +75,7 @@ export default function MoviesCardList({
   return (
     <>
       {isEmptyMovieList ? (
-        !isSavedMoviesLocation ? (
-          <span className="wrapper__notification">
-            Ничего не найдено. <br />
-            Измените поисковой запрос.
-          </span>
-        ) : (
-          <span className="wrapper__notification">
-            Ничего не найдено.
-          </span>
-        )
+        <span className="wrapper__notification">Ничего не найдено.</span>
       ) : (
         <div className="wrapper__section wrapper__section_theme_dark movies-card-list">
           <div className="wrapper__section-container movies-card-list__container">

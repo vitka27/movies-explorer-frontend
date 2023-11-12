@@ -7,6 +7,7 @@ export default function SearchForm({
   setMoviesList,
   getAllMovies,
 }) {
+  const [isEmptySearch, setIsEmptySearch] = useState(false);
   const isLocationMovies = useLocation().pathname === "/movies";
   const [searchQuery, setSearchQuery] = useState("");
   const [isShot, setIsShot] = useState(false);
@@ -15,7 +16,6 @@ export default function SearchForm({
 
   const filters = useCallback(
     (search, movies, isShot, showMoviesList = false) => {
-
       if (isLocationMovies) {
         localStorage.setItem("search", JSON.stringify(search));
         localStorage.setItem("isShot", JSON.stringify(isShot));
@@ -42,6 +42,7 @@ export default function SearchForm({
 
   const onSubmitSearch = (event) => {
     event.preventDefault();
+    searchQuery.length > 0 ? setIsEmptySearch(false) : setIsEmptySearch(true);
     goSearch();
   };
 
@@ -76,7 +77,6 @@ export default function SearchForm({
     }
   }, [filters, isLocationMovies, isShot, moviesSavedList]);
 
-
   return (
     <div className="wrapper__section wrapper__section_theme_dark search-form">
       <div className=" search-form__container wrapper__section-container">
@@ -87,9 +87,7 @@ export default function SearchForm({
         >
           <input
             name="search"
-            onChange={(event) => {
-              setSearchQuery(event.target.value);
-            }}
+            onChange={(event) => setSearchQuery(event.target.value)}
             value={searchQuery || ""}
             type="text"
             className="search-form__form-input"
@@ -110,6 +108,10 @@ export default function SearchForm({
           isLocationMovies={isLocationMovies}
         />
       </div>
+
+      {isEmptySearch && (
+        <p className="search-form__notification">Нужно ввести ключевое слово</p>
+      )}
     </div>
   );
 }
