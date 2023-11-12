@@ -30,29 +30,37 @@ import Preloader from "../Preloader/Preloader";
 function App() {
   const navigate = useNavigate();
   const location = useLocation().pathname;
-  const localStorageToken = localStorage.token;
+  const token = localStorage.token;
 
-  const [isAuthorezed, setIsAuthorezed] = useState(false);
+  const [isAuthorezed, setIsAuthorezed] = useState(
+    localStorage.getItem("isAuthorezed") || false
+  );
   const [currentUser, setCurrentUser] = useState({});
   const [moviesSavedList, setMoviesSavedList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
   //* get data card, user-prof
   useEffect(() => {
-    Promise.all([apiMain.getUser(), apiMain.getMovies()])
-      .then(([userData, dataSaveMovies]) => {
-        setCurrentUser(userData);
-        setMoviesSavedList(dataSaveMovies);
-        setIsAuthorezed(true);
-        setIsLoading(true);
-      })
-      .catch((error) => {
-        console.error(`Ошибка: ${error}`);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
-  }, []);
+    if (isAuthorezed) {
+      Promise.all([apiMain.getUser(token), apiMain.getMovies(token)])
+        .then(([userData, dataSaveMovies]) => {
+          setCurrentUser(userData);
+          setMoviesSavedList(dataSaveMovies);
+          setIsAuthorezed(true);
+          setIsLoading(true);
+        })
+        .catch((error) => {
+          console.error(
+            `Ошибка: apiMain.getUser(), apiMain.getMovies() ${error}`
+          );
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
+    } else {
+      setIsLoading(false);
+    }
+  }, [isAuthorezed, token]);
 
   function getAllMovies() {
     return getMovies()
@@ -70,7 +78,7 @@ function App() {
 
   function updateDataUser(userData) {
     apiMain
-      .setUserData(userData)
+      .setUserData(userData, token)
       .then((response) => {
         setIsLoading(true);
       })
@@ -87,9 +95,7 @@ function App() {
     register(data)
       .then((response) => {
         setIsLoading(true);
-        if (response) {
-          loginUser({ email: data.email, password: data.password });
-        }
+        loginUser({ email: data.email, password: data.password });
       })
       .catch((error) => {
         console.error(`Ошибка: ${error}`);
@@ -116,32 +122,34 @@ function App() {
   }
 
   function checkToken() {
-    if (localStorageToken) {
-      apiCheckToken(localStorageToken)
+    if (token) {
+      apiCheckToken(token)
         .then((response) => {
-          setIsLoading(true);
-          if (response) {
-            setIsAuthorezed(true);
-          }
+          localStorage.setItem("isAuthorezed", "true");
+          setIsAuthorezed(true);
         })
-        .catch((error) => console.error(`Ошибка: ${error}`))
+        .catch((error) => {
+          logoutUser();
+          console.error(`Ошибка: ${error}`);
+        })
         .finally(() => {
           setIsLoading(false);
         });
     }
   }
-  useEffect(checkToken, [localStorageToken]);
-
+useEffect(() => {
+    checkToken();
+})
   function logoutUser() {
     localStorage.clear();
     setIsAuthorezed(false);
-    navigate("/signin");
+    navigate("/");
   }
 
   //* add and delete movie
   function addMovieUserList(movie) {
     apiMain
-      .addMovie(movie)
+      .addMovie(movie, token)
       .then((newMovie) => {
         setMoviesSavedList([...moviesSavedList, newMovie]);
       })
@@ -150,7 +158,7 @@ function App() {
 
   function deletedMovie(movie) {
     apiMain
-      .delMovie(movie._id)
+      .delMovie(movie._id, token)
       .then(() => {
         setMoviesSavedList(
           moviesSavedList.filter((item) => item._id !== movie._id)
@@ -193,6 +201,7 @@ function App() {
               path="/profile"
               element={
                 <Profile
+                  isAuthorezed={isAuthorezed}
                   onUpdateDataUser={updateDataUser}
                   logoutUser={logoutUser}
                 />

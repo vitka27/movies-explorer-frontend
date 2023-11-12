@@ -3,7 +3,7 @@ import { CurrentUserContext } from "../../../contexts/CurrentUserContext";
 import useValidation from "../../../hooks/useValidation";
 import { REGEX_EMAIL, REGEX_NAME } from "../../../utils/const";
 
-export default function Profile({ onUpdateDataUser, logoutUser }) {
+export default function Profile({ onUpdateDataUser, logoutUser, isAuthorezed }) {
   const userData = useContext(CurrentUserContext);
   const {
     values,
@@ -40,7 +40,7 @@ export default function Profile({ onUpdateDataUser, logoutUser }) {
 
   useEffect(() => {
     reset({ name: userData.name, email: userData.email });
-  }, [reset, userData]);
+  }, [reset, userData, isAuthorezed]);
 
   return (
     <div className="wrapper__section wrapper__section_theme_dark profile">
