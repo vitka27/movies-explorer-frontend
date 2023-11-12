@@ -69,7 +69,7 @@ function App() {
         return response;
       })
       .catch((error) => {
-        console.error(`Ошибка: ${error}`);
+        console.error(`Ошибка при получении всех фильмов: ${error}`);
       })
       .finally(() => {
         setIsLoading(false);
@@ -83,7 +83,7 @@ function App() {
         setIsLoading(true);
       })
       .catch((error) => {
-        console.error(`Ошибка: ${error}`);
+        console.error(`Ошибка при обновлении профиля пользователя: ${error}`);
       })
       .finally(() => {
         setIsLoading(false);
@@ -98,7 +98,7 @@ function App() {
         loginUser({ email: data.email, password: data.password });
       })
       .catch((error) => {
-        console.error(`Ошибка: ${error}`);
+        console.error(`Ошибка при регистрации пользователя: ${error}`);
       })
       .finally(() => {
         setIsLoading(false);
@@ -114,7 +114,7 @@ function App() {
         navigate("/movies", { replace: true });
       })
       .catch((error) => {
-        console.error(`Ошибка: ${error}`);
+        console.error(`Ошибка при авторизации пользователя: ${error}`);
       })
       .finally(() => {
         setIsLoading(false);
@@ -130,7 +130,7 @@ function App() {
         })
         .catch((error) => {
           logoutUser();
-          console.error(`Ошибка: ${error}`);
+          console.error(`Ошибка при проверке токена: ${error}`);
         })
         .finally(() => {
           setIsLoading(false);
@@ -153,7 +153,7 @@ useEffect(() => {
       .then((newMovie) => {
         setMoviesSavedList([...moviesSavedList, newMovie]);
       })
-      .catch((error) => console.error(`Ошибка: ${error}`));
+      .catch((error) => console.error(`Ошибка при добавлении фильма в список пользователя: ${error}`));
   }
 
   function deletedMovie(movie) {
@@ -164,7 +164,7 @@ useEffect(() => {
           moviesSavedList.filter((item) => item._id !== movie._id)
         );
       })
-      .catch((error) => console.error(`Ошибка: ${error}`));
+      .catch((error) => console.error(`Ошибка при удалении фильма из списка пользователя: ${error}`));
   }
 
   return isLoading ? (
