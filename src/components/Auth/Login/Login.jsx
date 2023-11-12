@@ -38,7 +38,7 @@ export default function Login({ loginUser }) {
         isEmpty={isEmpty}
         isDirty={isDirty}
         isValidInputs={isValidInputs}
-        required=""
+        required
         pattern={REGEX_EMAIL}
         maxLength={30}
         minLength={2}
@@ -56,7 +56,7 @@ export default function Login({ loginUser }) {
         isEmpty={isEmpty}
         isDirty={isDirty}
         isValidInputs={isValidInputs}
-        required=""
+        required
         minLength={2}
         maxLength={30}
         placeholder="Введите ваш пороль"

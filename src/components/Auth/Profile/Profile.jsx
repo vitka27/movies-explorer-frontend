@@ -71,7 +71,7 @@ export default function Profile({ onUpdateDataUser, logoutUser }) {
                 id="name"
                 value={values.name || ""}
                 onChange={handleChange}
-                required=""
+                required
                 pattern={REGEX_NAME}
                 minLength={2}
                 maxLength={30}
@@ -99,7 +99,7 @@ export default function Profile({ onUpdateDataUser, logoutUser }) {
                 }
                 value={values.email || ""}
                 onChange={handleChange}
-                required=""
+                required
                 pattern={REGEX_EMAIL}
                 maxLength={30}
                 minLength={2}

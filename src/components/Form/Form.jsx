@@ -16,7 +16,7 @@ export default function Form({
    ...props
 }) {
   return (
-    <>
+
       <div className="wrapper__section form">
         <div className="wrapper__section-container form__wrap">
           <div className="form__header-logo">
@@ -49,6 +49,6 @@ export default function Form({
           </form>
         </div>
       </div>
-    </>
+
   );
 }

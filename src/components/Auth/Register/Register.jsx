@@ -38,7 +38,7 @@ export default function Register({ registerUser }) {
         isEmpty={isEmpty}
         isDirty={isDirty}
         isValidInputs={isValidInputs}
-        required=""
+        required
         pattern={REGEX_NAME}
         minLength={2}
         maxLength={30}
@@ -56,7 +56,7 @@ export default function Register({ registerUser }) {
         isEmpty={isEmpty}
         isDirty={isDirty}
         isValidInputs={isValidInputs}
-        required=""
+        required
         pattern={REGEX_EMAIL}
         minLength={2}
         maxLength={30}
@@ -74,7 +74,7 @@ export default function Register({ registerUser }) {
         isEmpty={isEmpty}
         isDirty={isDirty}
         isValidInputs={isValidInputs}
-        required=""
+        required
         minLength={2}
         maxLength={30}
         placeholder="Введите пороль"
