@@ -6,6 +6,7 @@ export default function SearchForm({
   moviesSavedList,
   setMoviesList,
   getAllMovies,
+  setIsFirstRender,
 }) {
   const [isEmptySearch, setIsEmptySearch] = useState(false);
   const isLocationMovies = useLocation().pathname === "/movies";
@@ -47,6 +48,7 @@ export default function SearchForm({
   };
 
   const goSearch = () => {
+    setIsFirstRender(false);
     if (isLocationMovies) {
       if (dataAllMovies.length === 0) {
         getAllMovies().then((response) => {
@@ -69,6 +71,7 @@ export default function SearchForm({
         const shot = localStorage.isShot === "true" ? true : false;
         setDataAllMovies(movies);
         setSearchQuery(search);
+        setIsFirstRender(false);
         setIsShot(shot);
         filters(search, movies, shot, false);
       }

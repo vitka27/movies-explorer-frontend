@@ -9,6 +9,7 @@ export default function MoviesCardList({
   moviesSavedList,
   deletedMovie,
   addMovieUserList,
+  isFirstRender,
 }) {
   const isSavedMoviesLocation = "/saved-movies" === useLocation().pathname;
   const [endCountCardList, setEndCountCardList] = useState("");
@@ -74,29 +75,35 @@ export default function MoviesCardList({
 
   return (
     <>
-      {isEmptyMovieList ? (
-        <span className="wrapper__notification">Ничего не найдено.</span>
+      {!isSavedMoviesLocation && isFirstRender ? (
+        <span className="wrapper__notification">Вы еще ничего не искали.</span>
       ) : (
-        <div className="wrapper__section wrapper__section_theme_dark movies-card-list">
-          <div className="wrapper__section-container movies-card-list__container">
-            {moviesListRender.map((movie) => (
-              <MoviesCard
-                key={isSavedMoviesLocation ? movie._id : movie.id}
-                movie={movie}
-                deletedMovie={deletedMovie}
-                addMovieUserList={addMovieUserList}
-                moviesSavedList={moviesSavedList}
-              />
-            ))}
-          </div>
-          {isSavedMoviesLocation ? (
-            ""
-          ) : endCountCardList >= movies.length ? (
-            ""
+        <>
+          {isEmptyMovieList ? (
+            <span className="wrapper__notification">Ничего не найдено.</span>
           ) : (
-            <More handleClickMore={handleClickMore} />
+            <div className="wrapper__section wrapper__section_theme_dark movies-card-list">
+              <div className="wrapper__section-container movies-card-list__container">
+                {moviesListRender.map((movie) => (
+                  <MoviesCard
+                    key={isSavedMoviesLocation ? movie._id : movie.id}
+                    movie={movie}
+                    deletedMovie={deletedMovie}
+                    addMovieUserList={addMovieUserList}
+                    moviesSavedList={moviesSavedList}
+                  />
+                ))}
+              </div>
+              {isSavedMoviesLocation ? (
+                ""
+              ) : endCountCardList >= movies.length ? (
+                ""
+              ) : (
+                <More handleClickMore={handleClickMore} />
+              )}
+            </div>
           )}
-        </div>
+        </>
       )}
     </>
   );

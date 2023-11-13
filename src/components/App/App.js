@@ -33,7 +33,7 @@ function App() {
   const token = localStorage.token;
 
   const [isAuthorezed, setIsAuthorezed] = useState(
-    localStorage.getItem("isAuthorezed") || false
+     false
   );
   const [currentUser, setCurrentUser] = useState({});
   const [moviesSavedList, setMoviesSavedList] = useState([]);
@@ -115,6 +115,7 @@ function App() {
       })
       .catch((error) => {
         console.error(`Ошибка при авторизации пользователя: ${error}`);
+        logoutUser();
       })
       .finally(() => {
         setIsLoading(false);
@@ -125,7 +126,6 @@ function App() {
     if (token) {
       apiCheckToken(token)
         .then((response) => {
-          localStorage.setItem("isAuthorezed", "true");
           setIsAuthorezed(true);
         })
         .catch((error) => {

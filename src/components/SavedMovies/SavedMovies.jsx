@@ -4,14 +4,20 @@ import MoviesCardList from "../Movies/MoviesCardList/MoviesCardList";
 
 export default function SavedMovies({ moviesSavedList, deletedMovie }) {
   const [moviesList, setMoviesList] = useState([]);
+  const [isFirstRender, setIsFirstRender] = useState(true);
 
   return (
     <main className="wrapper__main">
       <SearchForm
         moviesSavedList={moviesSavedList}
         setMoviesList={setMoviesList}
+        setIsFirstRender={setIsFirstRender}
       />
-      <MoviesCardList movies={moviesList} deletedMovie={deletedMovie} />
+      <MoviesCardList
+        movies={moviesList}
+        deletedMovie={deletedMovie}
+        isFirstRender={isFirstRender}
+      />
     </main>
   );
 }
