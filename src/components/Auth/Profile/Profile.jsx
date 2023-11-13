@@ -3,16 +3,18 @@ import { CurrentUserContext } from "../../../contexts/CurrentUserContext";
 import useValidation from "../../../hooks/useValidation";
 import { REGEX_EMAIL, REGEX_NAME } from "../../../utils/const";
 
-export default function Profile({ onUpdateDataUser, logoutUser, isAuthorezed }) {
+export default function Profile({
+  onUpdateDataUser,
+  logoutUser,
+  isAuthorezed,
+}) {
   const userData = useContext(CurrentUserContext);
-  const {
-    values,
-    errors,
-    isValidInputs,
-    isValidForm,
-    handleChange,
-    reset,
-  } = useValidation();
+  const { values, errors, isValidInputs, isValidForm, handleChange, reset } =
+    useValidation();
+  const isMatch =
+    userData.name === values.name && userData.email === values.email;
+
+
   const [isEdit, setIsEdit] = useState(false);
   const [toDisable, setToDisable] = useState(true);
   const [successfully, setSuccessfully] = useState(false);
@@ -20,22 +22,25 @@ export default function Profile({ onUpdateDataUser, logoutUser, isAuthorezed }) 
   function toggleEdit(event) {
     event.preventDefault();
     setIsEdit(!isEdit);
-    setToDisable(!toDisable);
     setSuccessfully(false);
+    setToDisable(false);
   }
 
   function cancelEdit(event) {
     event.preventDefault();
     setIsEdit(!isEdit);
     setSuccessfully(false);
+    setToDisable(true);
+    reset({ name: userData.name, email: userData.email });
   }
 
   function handleSubmit(event) {
     event.preventDefault();
-    onUpdateDataUser(values);
+    !isMatch && onUpdateDataUser(values);
     setSuccessfully(true);
     setIsEdit(!isEdit);
-    setToDisable(!toDisable);
+    setToDisable(true);
+    reset({ name: values.name, email: values.email });
   }
 
   useEffect(() => {
@@ -45,6 +50,7 @@ export default function Profile({ onUpdateDataUser, logoutUser, isAuthorezed }) 
   return (
     <div className="wrapper__section wrapper__section_theme_dark profile">
       <form
+        name="profile"
         noValidate
         action="#"
         className="wrapper__section-container  profile__form"
@@ -118,8 +124,12 @@ export default function Profile({ onUpdateDataUser, logoutUser, isAuthorezed }) 
             {isEdit ? (
               <>
                 <button
-                  disabled={!isValidForm}
-                  className="profile__button"
+                  disabled={!isValidForm || isMatch}
+                  className={
+                    !isValidForm || isMatch
+                      ? "profile__button profile__button_type_disabled"
+                      : "profile__button"
+                  }
                   type="submit"
                   aria-label="Сохранить"
                 >

@@ -100,6 +100,12 @@
   color: #ee3465;
   font-weight: 500;
 }
+.profile__button_type_disabled {
+  color: #696868;
+}
+.profile__button_type_disabled:hover {
+  opacity: 1;
+}
 @media screen and (max-width: 768px) {
   .profile {
     padding-top: 230px;
