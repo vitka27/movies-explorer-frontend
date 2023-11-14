@@ -75,7 +75,6 @@ export default function MoviesCardList({
       return () => window.removeEventListener("resize", showResize);
     }
   }, [isSavedMoviesLocation, movies]);
-console.log(isSend);
   return (
     <>
       {isSend ? (

@@ -42,7 +42,7 @@ function App() {
 
   //* get data card, user-prof
   useEffect(() => {
-    if (isAuthorezed) {
+    if (token) {
       Promise.all([apiMain.getUser(token), apiMain.getMovies(token)])
         .then(([userData, dataSaveMovies]) => {
           setCurrentUser(userData);
@@ -53,11 +53,9 @@ function App() {
             `Ошибка: apiMain.getUser(), apiMain.getMovies() ${error}`
           );
         })
-        .finally(() => {
-          setIsLoading(false);
-        });
     } else {
-      setIsLoading(false);
+      setIsAuthorezed(false)
+      setIsLoading(false)
     }
   }, [isAuthorezed, token]);
 
@@ -116,8 +114,9 @@ function App() {
       .then(({ token }) => {
         token && localStorage.setItem("token", token);
         setIsAuthorezed(true);
-        navigate('/movies', { replace: true });
+        navigate("/movies", { replace: true });
         setIsError(false);
+        setIsLoading(false)
       })
       .catch((error) => {
         setIsError(true);
@@ -132,7 +131,6 @@ function App() {
     if (token) {
       apiCheckToken(token)
         .then((response) => {
-          console.log(response);
           if (response.email) {
             setIsAuthorezed(true);
           } else {
@@ -142,22 +140,22 @@ function App() {
           }
         })
         .catch((error) => {
-          setIsAuthorezed(false);
           localStorage.clear();
           console.error(`Ошибка при проверке токена: ${error}`);
-        });
+        }).finally(()=>{
+          setIsLoading(false);
+        })
     }
   }
 
   useEffect(() => {
-    if (token) {
       checkToken();
-    }
-  });
+  }, [token]);
 
   function logoutUser() {
     localStorage.clear();
     setIsAuthorezed(false);
+    setIsLoading(false);
     navigate("/");
   }
 
