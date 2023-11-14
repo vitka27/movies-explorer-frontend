@@ -63,7 +63,7 @@ export default function MoviesCard({
           type="button"
           aria-label="Удалить фильм"
           className={
-            "movies-card__action movies-card__action_like_active movies-card__action_delete"
+            "movies-card__action movies-card__action_delete"
           }
           onClick={handleRemoveMovie}
         ></button>

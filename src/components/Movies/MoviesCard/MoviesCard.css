@@ -1,4 +1,5 @@
 .movies-card {
+  cursor: pointer;
   margin: 0;
   display: grid;
   align-items: end;
@@ -10,7 +11,15 @@
     "title action"
     "time time";
 }
-.movies-card__img-link{
+.movies-card:hover .movies-card__action_delete {
+  background-image: url(../../../images/delete.svg);
+  background-repeat: no-repeat;
+  background-color: #313131;
+  background-position: center;
+  border-radius: 50%;
+}
+
+.movies-card__img-link {
   grid-area: image;
   text-decoration: none;
   width: 100%;
@@ -38,7 +47,6 @@
   justify-self: end;
   width: 24px;
   height: 24px;
-
   background: transparent;
   border: none;
   cursor: pointer;
@@ -60,13 +68,6 @@
   background-position: center;
   border-radius: 50%;
 }
-.movies-card__action_delete:hover {
-  background-image: url(../../../images/delete.svg);
-  background-repeat: no-repeat;
-  background-color: #313131;
-  background-position: center;
-  border-radius: 50%;
-}
 .movies-card__time {
   margin: 30px 0px 0px;
   grid-area: time;
@@ -81,13 +82,13 @@
   line-height: normal;
 }
 @media screen and (max-width: 320px) {
-  .movies-card{
+  .movies-card {
     row-gap: 9px;
   }
   .movies-card__title {
     font-size: 12px;
   }
-  .movies-card__time{
+  .movies-card__time {
     margin-top: 20px;
   }
 }
