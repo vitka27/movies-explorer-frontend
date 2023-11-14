@@ -1,5 +1,6 @@
 import { React, useContext, useEffect, useState } from "react";
 import { CurrentUserContext } from "../../../contexts/CurrentUserContext";
+import { NotificationContext } from "../../../contexts/NotificationContext";
 import useValidation from "../../../hooks/useValidation";
 import { REGEX_EMAIL, REGEX_NAME } from "../../../utils/const";
 
@@ -9,11 +10,12 @@ export default function Profile({
   isAuthorezed,
 }) {
   const userData = useContext(CurrentUserContext);
+  const { isError, isLoading } = useContext(NotificationContext);
+  console.log(isError, isLoading);
   const { values, errors, isValidInputs, isValidForm, handleChange, reset } =
     useValidation();
   const isMatch =
     userData.name === values.name && userData.email === values.email;
-
 
   const [isEdit, setIsEdit] = useState(false);
   const [toDisable, setToDisable] = useState(true);

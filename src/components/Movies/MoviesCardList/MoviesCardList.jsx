@@ -71,7 +71,7 @@ export default function MoviesCardList({
       });
       return () => window.removeEventListener("resize", showResize);
     }
-  }, [isSavedMoviesLocation, window]);
+  }, [isSavedMoviesLocation, movies]);
 
   return (
     <>

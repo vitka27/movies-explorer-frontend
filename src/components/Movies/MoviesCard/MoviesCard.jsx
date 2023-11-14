@@ -29,11 +29,9 @@ export default function MoviesCard({
     if (movieInSaveList) {
       deletedMovie(movieInSaveList);
       setIsLike(false);
-      console.log("del", movie);
     } else {
       setIsLike(true);
       addMovieUserList(movie);
-      console.log("add", movie);
     }
   }
 
