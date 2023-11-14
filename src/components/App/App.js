@@ -1,0 +1,263 @@
+import { useState, useEffect } from "react";
+import {
+  Route,
+  Routes,
+  useLocation,
+  useNavigate,
+  Navigate,
+} from "react-router-dom";
+
+import { visabilityPathHeaderFooter } from "../../utils/const";
+import apiMain from "../../utils/MainApi";
+import getMovies from "../../utils/MoviesApi";
+import { register, authorize, apiCheckToken } from "../../utils/Auth";
+
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
+
+import { CurrentUserContext } from "../../contexts/CurrentUserContext";
+import { NotificationContext } from "../../contexts/NotificationContext";
+
+import Header from "../Header/Header";
+import Main from "../Main/Main";
+import Footer from "../Footer/Footer";
+import Movies from "../Movies/Movies";
+import SavedMovies from "../SavedMovies/SavedMovies";
+import Login from "../Auth/Login/Login";
+import Register from "../Auth/Register/Register";
+import Profile from "../Auth/Profile/Profile";
+import NotFound from "../NotFound/NotFound";
+import Preloader from "../Preloader/Preloader";
+
+function App() {
+  const navigate = useNavigate();
+  const location = useLocation().pathname;
+  const token = localStorage.token;
+
+  const [isAuthorezed, setIsAuthorezed] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const [currentUser, setCurrentUser] = useState({});
+  const [moviesSavedList, setMoviesSavedList] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isSend, setIsSend] = useState(false);
+
+  //* get data card, user-prof
+  useEffect(() => {
+    if (token) {
+      Promise.all([apiMain.getUser(token), apiMain.getMovies(token)])
+        .then(([userData, dataSaveMovies]) => {
+          setCurrentUser(userData);
+          setMoviesSavedList(dataSaveMovies);
+        })
+        .catch((error) => {
+          console.error(
+            `Ошибка: apiMain.getUser(), apiMain.getMovies() ${error}`
+          );
+        })
+    } else {
+      setIsAuthorezed(false)
+      setIsLoading(false)
+    }
+  }, [isAuthorezed, token]);
+
+  function getAllMovies() {
+    setIsSend(true);
+    return getMovies()
+      .then((response) => {
+        setIsError(false);
+        return response;
+      })
+      .catch((error) => {
+        setIsError(true);
+        console.error(`Ошибка при получении всех фильмов: ${error}`);
+      })
+      .finally(() => {
+        setIsSend(false);
+      });
+  }
+
+  function updateDataUser(userData) {
+    setIsSend(true);
+    apiMain
+      .setUserData(userData, token)
+      .then((response) => {
+        setIsError(false);
+      })
+      .catch((error) => {
+        setIsError(true);
+        console.error(`Ошибка при обновлении профиля пользователя: ${error}`);
+      })
+      .finally(() => {
+        setIsSend(false);
+      });
+  }
+
+  //*register, login, checkToken and logout
+  function registerUser(data) {
+    setIsSend(true);
+    register(data)
+      .then((response) => {
+        setIsError(false);
+        loginUser({ email: data.email, password: data.password });
+      })
+      .catch((error) => {
+        setIsError(true);
+        console.error(`Ошибка при регистрации пользователя: ${error}`);
+      })
+      .finally(() => {
+        setIsSend(false);
+      });
+  }
+
+  function loginUser(data) {
+    setIsSend(true);
+    authorize(data)
+      .then(({ token }) => {
+        token && localStorage.setItem("token", token);
+        setIsAuthorezed(true);
+        navigate("/movies", { replace: true });
+        setIsError(false);
+        setIsLoading(false)
+      })
+      .catch((error) => {
+        setIsError(true);
+        console.error(`Ошибка при авторизации пользователя: ${error}`);
+      })
+      .finally(() => {
+        setIsSend(false);
+      });
+  }
+
+  function checkToken() {
+    if (token) {
+      apiCheckToken(token)
+        .then((response) => {
+          if (response.email) {
+            setIsAuthorezed(true);
+          } else {
+            setIsAuthorezed(false);
+            localStorage.clear();
+            console.error(`Ошибка при проверке токена: ${response.message}`);
+          }
+        })
+        .catch((error) => {
+          localStorage.clear();
+          console.error(`Ошибка при проверке токена: ${error}`);
+        }).finally(()=>{
+          setIsLoading(false);
+        })
+    }
+  }
+
+  useEffect(() => {
+      checkToken();
+  }, [token]);
+
+  function logoutUser() {
+    localStorage.clear();
+    setIsAuthorezed(false);
+    setIsLoading(false);
+    navigate("/");
+  }
+
+  //* add and delete movie
+  function addMovieUserList(movie) {
+    apiMain
+      .addMovie(movie, token)
+      .then((newMovie) => {
+        setMoviesSavedList([...moviesSavedList, newMovie]);
+      })
+      .catch((error) =>
+        console.error(
+          `Ошибка при добавлении фильма в список пользователя: ${error}`
+        )
+      );
+  }
+
+  function deletedMovie(movie) {
+    apiMain
+      .delMovie(movie._id, token)
+      .then(() => {
+        setMoviesSavedList(
+          moviesSavedList.filter((item) => item._id !== movie._id)
+        );
+      })
+      .catch((error) =>
+        console.error(
+          `Ошибка при удалении фильма из списка пользователя: ${error}`
+        )
+      );
+  }
+
+  return isLoading ? (
+    <Preloader />
+  ) : (
+    <NotificationContext.Provider value={{ isError, isSend }}>
+      <CurrentUserContext.Provider value={currentUser}>
+        <div className="wrapper">
+          {visabilityPathHeaderFooter.includes(location) && (
+            <Header isAuthorezed={isAuthorezed} />
+          )}
+          <Routes>
+            <Route element={<ProtectedRoute isAuthorezed={isAuthorezed} />}>
+              <Route
+                path="/movies"
+                element={
+                  <Movies
+                    getAllMovies={getAllMovies}
+                    moviesSavedList={moviesSavedList}
+                    addMovieUserList={addMovieUserList}
+                    deletedMovie={deletedMovie}
+                  />
+                }
+              />
+              <Route
+                path="/saved-movies"
+                element={
+                  <SavedMovies
+                    moviesSavedList={moviesSavedList}
+                    deletedMovie={deletedMovie}
+                  />
+                }
+              />
+              <Route
+                path="/profile"
+                element={
+                  <Profile
+                    isAuthorezed={isAuthorezed}
+                    onUpdateDataUser={updateDataUser}
+                    logoutUser={logoutUser}
+                  />
+                }
+              />
+              <Route path="*" element={<NotFound />} />
+            </Route>
+            <Route
+              path="/signin"
+              element={
+                isAuthorezed ? (
+                  <Navigate to="/movies" replace />
+                ) : (
+                  <Login loginUser={loginUser} />
+                )
+              }
+            />
+            <Route
+              path="/signup"
+              element={
+                isAuthorezed ? (
+                  <Navigate to="/movies" replace />
+                ) : (
+                  <Register registerUser={registerUser} />
+                )
+              }
+            />
+            <Route path="/" element={<Main />} />
+          </Routes>
+          {visabilityPathHeaderFooter.includes(location) && <Footer />}
+        </div>
+      </CurrentUserContext.Provider>
+    </NotificationContext.Provider>
+  );
+}
+
+export default App;

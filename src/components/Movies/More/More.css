@@ -1,0 +1,30 @@
+.more {
+}
+.more__container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 53px 0px 100px;
+}
+.more__title {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 320px;
+  height: 36px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background: #2f2f2f;
+
+  color: #fff;
+  text-align: center;
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+.more__title:hover {
+  opacity: 0.8;
+}

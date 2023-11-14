@@ -1,0 +1,160 @@
+.about-me {
+}
+.about-me__container {
+  padding: 110px 0px 100px;
+}
+.about-me__title {
+  margin: 0;
+  padding-bottom: 23px;
+  border-bottom: 1px solid #dadada;
+
+  color: #fff;
+
+  font-size: 22px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  letter-spacing: -0.88px;
+}
+.about-me__info {
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  padding-top: 66px;
+}
+.about-me__info-image {
+  max-width: 270px;
+  max-height: 327px;
+}
+.about-me__info-block {
+  max-width: 600px;
+  padding-right: 20px;
+}
+.about-me__info-name {
+  margin: 0;
+
+  color: #fff;
+
+  font-size: 50px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 58px; /* 116% */
+  letter-spacing: -2px;
+}
+.about-me__info-experience {
+  margin: 0;
+  padding-top: 18px;
+
+  color: #fff;
+  font-feature-settings: "clig" off, "liga" off;
+
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px; /* 111.111% */
+}
+.about-me__info-text {
+  margin: 0;
+  padding-top: 26px;
+
+  color: #fff;
+  font-feature-settings: "clig" off, "liga" off;
+
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px; /* 157.143% */
+}
+.about-me__info-link-github {
+  display: inline-block;
+  margin: 99px 0px 0px 0px;
+  text-decoration: none;
+
+  color: #fff;
+
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+.about-me__info-link-github:hover {
+  opacity: 0.7;
+}
+
+@media screen and (max-width: 768px) {
+  .about-me__container {
+    padding: 90px 0px;
+  }
+  .about-me__info-name {
+    font-size: 40px;
+    line-height: 40px; /* 100% */
+    letter-spacing: -1.6px;
+  }
+  .about-me__info-experience {
+    font-size: 12px;
+    line-height: 18px; /* 150% */
+    padding-top: 16px;
+  }
+  .about-me__info-text {
+    font-size: 12px;
+    line-height: 18px; /* 150% */
+    max-width: 364px;
+    padding-top: 20px;
+  }
+  .about-me__info-link-github {
+    margin-top: 80px;
+  }
+  .about-me__info-image {
+    max-width: 255px;
+    max-height: 307px;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .about-me__container {
+    padding: 70px 0px;
+  }
+  .about-me__title {
+    padding-bottom: 28px;
+    font-size: 18px;
+    letter-spacing: -0.72px;
+  }
+  .about-me__info {
+    flex-direction: column;
+  }
+  .about-me__info-image {
+    align-self: center;
+    max-width: 292px;
+    max-height: 352px;
+  }
+  .about-me__info-block {
+    padding: 0;
+  }
+  .about-me__info-name {
+    padding-top: 40px;
+    font-size: 30px;
+    line-height: normal;
+    letter-spacing: -1.2px;
+  }
+  .about-me__info-experience {
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 16px; /* 145.455% */
+  }
+  .about-me__info-text {
+    font-size: 11px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 16px; /* 145.455% */
+  }
+  .about-me__info-link-github {
+    margin-top: 40px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .about-me__info-image {
+    align-self: auto;
+  }
+}

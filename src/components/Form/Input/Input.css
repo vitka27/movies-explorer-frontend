@@ -1,0 +1,45 @@
+.input {
+  display: flex;
+  flex-direction: column;
+  padding-top: 8px;
+}
+.input:first-child {
+  padding-top: 0px;
+}
+.input__label {
+  color: #8b8b8b;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+.input__label:first-child {
+}
+.input__text {
+  padding: 5px 0px 10px 0px;
+  border: none;
+  border-bottom: 1px solid #424242;
+  background: transparent;
+
+  color: #fff;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+.input__text_red {
+  color: #ee3465;
+}
+.input__text:focus {
+  outline: none;
+  border-bottom: 1px solid #4285F4;
+}
+.input__error {
+  padding-top: 6px;
+  min-height: 24px;
+  color: #ee3465;
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
