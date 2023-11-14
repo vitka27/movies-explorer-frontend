@@ -45,6 +45,7 @@ function App() {
     if (isAuthorezed) {
       Promise.all([apiMain.getUser(token), apiMain.getMovies(token)])
         .then(([userData, dataSaveMovies]) => {
+          setIsLoading(true);
           setCurrentUser(userData);
           setMoviesSavedList(dataSaveMovies);
         })
@@ -115,7 +116,7 @@ function App() {
     authorize(data)
       .then(({ token }) => {
         setIsError(false);
-        token && localStorage.setItem("token", token);
+        localStorage.setItem("token", token);
         checkToken();
         navigate("/movies", { replace: true });
       })
@@ -132,7 +133,13 @@ function App() {
     if (token) {
       apiCheckToken(token)
         .then((response) => {
-          setIsAuthorezed(true);
+          console.log(response);
+          if (response.email) {
+            setIsAuthorezed(true);
+          } else {
+            logoutUser();
+            console.error(`Ошибка при проверке токена: ${response.message}`);
+          }
         })
         .catch((error) => {
           setIsAuthorezed(false);
@@ -142,7 +149,9 @@ function App() {
   }
 
   useEffect(() => {
-    checkToken();
+    if (token) {
+      checkToken();
+    }
   });
 
   function logoutUser() {
