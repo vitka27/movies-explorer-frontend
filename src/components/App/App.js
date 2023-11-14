@@ -45,7 +45,6 @@ function App() {
     if (isAuthorezed) {
       Promise.all([apiMain.getUser(token), apiMain.getMovies(token)])
         .then(([userData, dataSaveMovies]) => {
-          setIsLoading(true);
           setCurrentUser(userData);
           setMoviesSavedList(dataSaveMovies);
         })
@@ -115,10 +114,10 @@ function App() {
     setIsSend(true);
     authorize(data)
       .then(({ token }) => {
+        token && localStorage.setItem("token", token);
+        setIsAuthorezed(true);
+        navigate('/movies', { replace: true });
         setIsError(false);
-        localStorage.setItem("token", token);
-        checkToken();
-        navigate("/movies", { replace: true });
       })
       .catch((error) => {
         setIsError(true);
@@ -137,12 +136,14 @@ function App() {
           if (response.email) {
             setIsAuthorezed(true);
           } else {
-            logoutUser();
+            setIsAuthorezed(false);
+            localStorage.clear();
             console.error(`Ошибка при проверке токена: ${response.message}`);
           }
         })
         .catch((error) => {
           setIsAuthorezed(false);
+          localStorage.clear();
           console.error(`Ошибка при проверке токена: ${error}`);
         });
     }
