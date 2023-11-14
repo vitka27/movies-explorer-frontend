@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { useLocation } from "react-router-dom";
-import More from "../More/More";
-import MoviesCard from "../MoviesCard/MoviesCard";
 import { SCREEN_SETTINGS } from "../../../utils/const";
+import { NotificationContext } from "../../../contexts/NotificationContext";
+import MoviesCard from "../MoviesCard/MoviesCard";
+import More from "../More/More";
+import Preloader from "../../Preloader/Preloader";
 
 export default function MoviesCardList({
   movies,
@@ -11,6 +13,7 @@ export default function MoviesCardList({
   addMovieUserList,
   isFirstRender,
 }) {
+  const { isError, isSend } = useContext(NotificationContext);
   const isSavedMoviesLocation = "/saved-movies" === useLocation().pathname;
   const [endCountCardList, setEndCountCardList] = useState("");
 
@@ -72,36 +75,46 @@ export default function MoviesCardList({
       return () => window.removeEventListener("resize", showResize);
     }
   }, [isSavedMoviesLocation, movies]);
-
+console.log(isSend);
   return (
     <>
-      {!isSavedMoviesLocation && isFirstRender ? (
-        <span className="wrapper__notification">Вы еще ничего не искали.</span>
+      {isSend ? (
+        <Preloader />
       ) : (
         <>
-          {isEmptyMovieList ? (
-            <span className="wrapper__notification">Ничего не найдено.</span>
+          {!isSavedMoviesLocation && isFirstRender ? (
+            <span className="wrapper__notification">
+              Вы еще ничего не искали.
+            </span>
           ) : (
-            <div className="wrapper__section wrapper__section_theme_dark movies-card-list">
-              <div className="wrapper__section-container movies-card-list__container">
-                {moviesListRender.map((movie) => (
-                  <MoviesCard
-                    key={isSavedMoviesLocation ? movie._id : movie.id}
-                    movie={movie}
-                    deletedMovie={deletedMovie}
-                    addMovieUserList={addMovieUserList}
-                    moviesSavedList={moviesSavedList}
-                  />
-                ))}
-              </div>
-              {isSavedMoviesLocation ? (
-                ""
-              ) : endCountCardList >= movies.length ? (
-                ""
+            <>
+              {isEmptyMovieList ? (
+                <span className="wrapper__notification">
+                  Ничего не найдено.
+                </span>
               ) : (
-                <More handleClickMore={handleClickMore} />
+                <div className="wrapper__section wrapper__section_theme_dark movies-card-list">
+                  <div className="wrapper__section-container movies-card-list__container">
+                    {moviesListRender.map((movie) => (
+                      <MoviesCard
+                        key={isSavedMoviesLocation ? movie._id : movie.id}
+                        movie={movie}
+                        deletedMovie={deletedMovie}
+                        addMovieUserList={addMovieUserList}
+                        moviesSavedList={moviesSavedList}
+                      />
+                    ))}
+                  </div>
+                  {isSavedMoviesLocation ? (
+                    ""
+                  ) : endCountCardList >= movies.length ? (
+                    ""
+                  ) : (
+                    <More handleClickMore={handleClickMore} />
+                  )}
+                </div>
               )}
-            </div>
+            </>
           )}
         </>
       )}

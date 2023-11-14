@@ -38,6 +38,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState({});
   const [moviesSavedList, setMoviesSavedList] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [isSend, setIsSend] = useState(false);
 
   //* get data card, user-prof
   useEffect(() => {
@@ -46,8 +47,6 @@ function App() {
         .then(([userData, dataSaveMovies]) => {
           setCurrentUser(userData);
           setMoviesSavedList(dataSaveMovies);
-          setIsAuthorezed(true);
-          setIsLoading(true);
         })
         .catch((error) => {
           console.error(
@@ -63,9 +62,9 @@ function App() {
   }, [isAuthorezed, token]);
 
   function getAllMovies() {
+    setIsSend(true);
     return getMovies()
       .then((response) => {
-        setIsLoading(true);
         setIsError(false);
         return response;
       })
@@ -74,15 +73,15 @@ function App() {
         console.error(`Ошибка при получении всех фильмов: ${error}`);
       })
       .finally(() => {
-        setIsLoading(false);
+        setIsSend(false);
       });
   }
 
   function updateDataUser(userData) {
+    setIsSend(true);
     apiMain
       .setUserData(userData, token)
       .then((response) => {
-        setIsLoading(true);
         setIsError(false);
       })
       .catch((error) => {
@@ -90,15 +89,15 @@ function App() {
         console.error(`Ошибка при обновлении профиля пользователя: ${error}`);
       })
       .finally(() => {
-        setIsLoading(false);
+        setIsSend(false);
       });
   }
 
   //*register, login, checkToken and logout
   function registerUser(data) {
+    setIsSend(true);
     register(data)
       .then((response) => {
-        setIsLoading(true);
         setIsError(false);
         loginUser({ email: data.email, password: data.password });
       })
@@ -107,14 +106,14 @@ function App() {
         console.error(`Ошибка при регистрации пользователя: ${error}`);
       })
       .finally(() => {
-        setIsLoading(false);
+        setIsSend(false);
       });
   }
 
   function loginUser(data) {
+    setIsSend(true);
     authorize(data)
       .then(({ token }) => {
-        setIsLoading(true);
         setIsError(false);
         token && localStorage.setItem("token", token);
         checkToken();
@@ -123,10 +122,9 @@ function App() {
       .catch((error) => {
         setIsError(true);
         console.error(`Ошибка при авторизации пользователя: ${error}`);
-        logoutUser();
       })
       .finally(() => {
-        setIsLoading(false);
+        setIsSend(false);
       });
   }
 
@@ -137,17 +135,16 @@ function App() {
           setIsAuthorezed(true);
         })
         .catch((error) => {
-          logoutUser();
+          setIsAuthorezed(false);
           console.error(`Ошибка при проверке токена: ${error}`);
-        })
-        .finally(() => {
-          setIsLoading(false);
         });
     }
   }
+
   useEffect(() => {
     checkToken();
   });
+
   function logoutUser() {
     localStorage.clear();
     setIsAuthorezed(false);
@@ -186,7 +183,7 @@ function App() {
   return isLoading ? (
     <Preloader />
   ) : (
-    <NotificationContext.Provider value={{isError, isLoading}}>
+    <NotificationContext.Provider value={{ isError, isSend }}>
       <CurrentUserContext.Provider value={currentUser}>
         <div className="wrapper">
           {visabilityPathHeaderFooter.includes(location) && (
